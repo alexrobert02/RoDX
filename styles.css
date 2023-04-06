@@ -1,13 +1,8 @@
 /* GLOBAL */
 
 * {
-<<<<<<< Updated upstream
-    margin:0;
-
-=======
   margin: 0;
   padding: 0;
->>>>>>> Stashed changes
 }
 html {
   height: 100%;
@@ -32,19 +27,18 @@ a {
 }
 
 /* TITLE */
-<<<<<<< Updated upstream
+
 .title {
-    /* background-color: red; */
-    /* font-size: 3.125rem; */
-    margin: 50px;
-    text-align: center;
-=======
+  /* background-color: red; */
+  /* font-size: 3.125rem; */
+  margin: 50px;
+  text-align: center;
+}
 #title {
   /* background-color: red; */
   /* font-size: 3.125rem; */
   margin: 50px;
   text-align: center;
->>>>>>> Stashed changes
 }
 
 /* CARDS */
@@ -70,15 +64,12 @@ a {
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-<<<<<<< Updated upstream
-=======
 
 a {
   text-decoration: none;
   color: #000000;
   font-size: 1.1rem;
 }
->>>>>>> Stashed changes
 @media only screen and (max-width: 850px) {
   .flex-cards {
     /* margin-top: 130px; */
@@ -118,10 +109,6 @@ a {
   }
 }
 
-<<<<<<< Updated upstream
-
-
-=======
 /************ STATISTICS *************/
 .container {
   display: flex;
@@ -202,6 +189,8 @@ a {
   align-items: center;
   background-image: url("./image1.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 100%;
   filter: brightness(90%) contrast(110%);
   filter: hue-rotate(20deg) saturate(120%);
@@ -229,7 +218,7 @@ a {
   padding: 15px 30px;
   border-radius: 10px;
   border: none;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px 0 rgba(245, 242, 242, 0.612);
   transition: all 0.2s ease-in-out;
   position: absolute;
   bottom: 20px;
@@ -239,4 +228,3 @@ a {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
->>>>>>> Stashed changes
