@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics</title>
     <link rel="stylesheet" href="styles.css">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        
 </head>
 <body>
    <div class="container">
@@ -16,7 +19,7 @@
 
         <div class="info-container">
             <div class="select-info">
-                <input list="browsers" name="browser" id="browser" style="width: 300px;">
+                <input list="browsers" name="browser" id="browser" style="">
                 <datalist id="browsers">
                   <option value="Grafic">
                   <option value="Tabel">
@@ -25,9 +28,49 @@
             </div>
             
             <div class="content">
-                <!-- aici vin grafice / tabele etc. -->
             </div>
         </div>
    </div>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics | RoDX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="year-container">
+            <div class="company-name-container">
+                <p id="company-name">RoDX</p>
+            </div> 
+            <h1 id="year">2022</h1>
+        </div>
+
+        <div class="info-container">
+            <h2 id="title">Statistics Dashboard</h2>
+            <div class="select-info">
+                <label for="browser">Select Display Type:</label>
+                <input list="browsers" name="browser" id="browser" style="width: 300px;">
+                <datalist id="browsers">
+                  <option value="Grafic">
+                  <option value="Tabel">
+                </datalist>
+                <input id="submit" type="submit">
+            </div>
+            <div class="content">
+                <img src="./info/grafic.png" alt="grafic">
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
