@@ -1,78 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Situatia Drogurilor din Romania</title>
-    <link rel="icon" type="image/x-icon" href="powerpuff_icon.png">
-    <link rel="stylesheet" href="../static/select_year.css">
-    <link rel="stylesheet" type="text/css" href="../static/header.css">
-    <link rel="stylesheet" type="text/css" href="../static/footer.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-</head>
-<body>
-     <header>
+    <link rel="icon" type="image/x-icon" href="../static/powerpuff_icon.png" />
+    <link rel="stylesheet" href="../static/select_year.css" />
+    <link rel="stylesheet" type="text/css" href="../static/header.css" />
+    <link rel="stylesheet" type="text/css" href="../static/footer.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
       <div class="header-left">
         <a href="./mainpage.html"> Acasa </a>
       </div>
       <div class="header-right">
         <a href="#">Statistici</a>
         <ul>
-          <li><a onclick="getYear(2018)" href="./statistic.html" class="year-container">2018</a></li>
-          <li><a onclick="getYear(2019)" href="./statistic.html" class="year-container">2019</a></li>
-          <li><a onclick="getYear(2020)" href="./statistic.html" class="year-container">2020</a></li>
-          <li><a onclick="getYear(2021)" href="./statistic.html" class="year-container">2021</a></li>
-          <li><a onclick="getYear(2022)" href="./statistic.html" class="year-container">2022</a></li>
-          <li><a onclick="getYear(2023)" href="./statistic.html" class="year-container">2023</a></li>
+          <li>
+            <a
+              onclick="getYear(2018)"
+              href="./statistic.html"
+              class="year-container"
+              >2018</a
+            >
+          </li>
+          <li>
+            <a
+              onclick="getYear(2019)"
+              href="./statistic.html"
+              class="year-container"
+              >2019</a
+            >
+          </li>
+          <li>
+            <a
+              onclick="getYear(2020)"
+              href="./statistic.html"
+              class="year-container"
+              >2020</a
+            >
+          </li>
+          <li>
+            <a
+              onclick="getYear(2021)"
+              href="./statistic.html"
+              class="year-container"
+              >2021</a
+            >
+          </li>
+          <li>
+            <a
+              onclick="getYear(2022)"
+              href="./statistic.html"
+              class="year-container"
+              >2022</a
+            >
+          </li>
+          <li>
+            <a
+              onclick="getYear(2023)"
+              href="./statistic.html"
+              class="year-container"
+              >2023</a
+            >
+          </li>
         </ul>
         <a href="./popular_drugs.html">Droguri</a>
         <a href="./helppage.html">Ajutor</a>
       </div>
     </header>
-    
 
     <main>
-        <div class="container">
-            <a onclick="getYear(2023)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2023</h2>
-                </div>
-            </a>
-            <a onclick="getYear(2022)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2022</h2>
-                </div>
-            </a>
-            <a onclick="getYear(2021)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2021</h2>
-                </div>
-            </a>
-            <a onclick="getYear(2020)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2020</h2>
-                </div>
-            </a>
-            <a onclick="getYear(2019)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2019</h2>
-                </div>
-            </a>
-            <a onclick="getYear(2018)" href="./statistic.html" >
-                <div class="card">
-                    <h2>2018</h2>
-                </div>
-            </a>
-        </div>
+      <div class="container">
+        <a onclick="getYear(2023)" href="./statistic.html">
+          <div class="card">
+            <h2>2023</h2>
+          </div>
+        </a>
+        <a onclick="getYear(2022)" href="./statistic.html">
+          <div class="card">
+            <h2>2022</h2>
+          </div>
+        </a>
+        <a onclick="getYear(2021)" href="./statistic.html">
+          <div class="card">
+            <h2>2021</h2>
+          </div>
+        </a>
+        <a onclick="getYear(2020)" href="./statistic.html">
+          <div class="card">
+            <h2>2020</h2>
+          </div>
+        </a>
+        <a onclick="getYear(2019)" href="./statistic.html">
+          <div class="card">
+            <h2>2019</h2>
+          </div>
+        </a>
+        <a onclick="getYear(2018)" href="./statistic.html">
+          <div class="card">
+            <h2>2018</h2>
+          </div>
+        </a>
+      </div>
     </main>
     <footer>
-        <p>Copyright © 2023 
-        <span class="footer-span">|</span> 
-        <a href="mailto:contact@situatia-drogurilor.ro">contact@situatia-drogurilor.ro</a>
-        </p>
+      <p>
+        Copyright © 2023
+        <span class="footer-span">|</span>
+        <a href="mailto:contact@situatia-drogurilor.ro"
+          >contact@situatia-drogurilor.ro</a
+        >
+      </p>
     </footer>
     <script src="../static/index-script.js"></script>
-</body>
- 
+  </body>
 </html>
