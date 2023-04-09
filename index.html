@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="powerpuff_icon.png">
     <title>Document</title>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 </head>
 <body>
-    <h1 id="title" class="title">ROMANIAN DRUG EXPLORER</h1>
+   
+    <h1 id="title1" class="title">ROMANIAN DRUG EXPLORER</h1>
 
     <div class="flex-cards">
-        <a href="./statistic.html"><div class="card">2022</div></a>
-        <a href="./statistic.html"><div class="card">2021</div></a>
-        <a href="./statistic.html"><div class="card">2020</div></a>
-        <a href="./statistic.html"><div class="card">2019</div></a>
-        <a href="./statistic.html"><div class="card">2018</div></a>
-        <a href="./statistic.html"><div class="card">2017</div></a>
+        <a onclick="getYear(2022)" href="./statistic.html"><div class="card">2022</div></a>
+        <a onclick="getYear(2021)" href="./statistic.html"><div class="card">2021</div></a>
+        <a onclick="getYear(2020)" href="./statistic.html"><div class="card">2020</div></a>
+        <a onclick="getYear(2019)" href="./statistic.html"><div class="card">2019</div></a>
+        <a onclick="getYear(2018)" href="./statistic.html"><div class="card">2018</div></a>
+        <a onclick="getYear(2017)" href="./statistic.html"><div class="card">2017</div></a>
     </div>
-
+    <script src ="index-script.js"></script>
 </body>
 </html>
