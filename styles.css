@@ -1,4 +1,4 @@
-html, body {
+  html, body {
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -9,10 +9,35 @@ html, body {
   }
 
   header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #D2D79F;
     text-align: center;
-    padding: 50px 0;
-  }
+    padding: 0 100px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+}
+
+.header-right a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.header-right a {
+  margin-right: 50px;
+}
+
 
   .title {
     font-size: 3rem;
@@ -64,7 +89,11 @@ html, body {
     background-color: #D2D79F;
     text-align: center;
     padding: 20px 0;
-  }
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 
   .footer-span {
     margin: 0 10px;

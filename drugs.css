@@ -1,0 +1,133 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+  
+body {
+    background: #483838;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D2D79F;
+    text-align: center;
+    padding: 0 100px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+}
+
+.header-right a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.header-right a {
+    margin-right: 50px;
+}
+
+main {
+    padding: 50px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #D2D79F;
+    text-align: center;
+    padding: 20px 0;
+
+  }
+
+  .footer-span {
+    margin: 0 10px;
+  }
+
+.container {
+    max-width: 120rem;
+    margin: 50px auto;
+    padding: 0 10.2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr)); /* Use auto-fit and minmax to create a responsive grid */
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 4.8rem;
+}
+
+
+.text-item-grid {
+    border-radius: 10px;
+    background-color: #D2D79F;
+    padding: 4.8rem 6.4rem;
+    border-radius: 3rem;
+}
+
+.grid-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    height:400px;
+}
+
+.grid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* @media screen and (max-width: 600px) {
+    .text-item-grid {
+        padding: 2.4rem 3.2rem;
+    }
+
+    .grid-photo {
+        border-radius: 10px;
+    }
+}
+*/
+
+.popular-drugs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    text-align: center;
+    background-color: #D2D79F;
+    margin-bottom: 100px;
+    }
+
+.popular-drugs h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.popular-drugs p {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin: 0 auto;
+    max-width: 80%;
+    margin-bottom: 2rem;
+}
