@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 /* GLOBAL */
 
@@ -6,9 +7,19 @@
 
 }
 html {
+=======
+html, body {
+>>>>>>> Stashed changes
     height: 100%;
-}
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(to bottom, #303030, #483838);
+  }
 
+<<<<<<< Updated upstream
 body {
     height: 100%;
     overflow: hidden;
@@ -32,26 +43,37 @@ a {
     /* background-color: red; */
     /* font-size: 3.125rem; */
     margin: 50px;
+=======
+  header {
+    background-color: #D2D79F;
+>>>>>>> Stashed changes
     text-align: center;
-}
+    padding: 50px 0;
+  }
 
-/* CARDS */
+  .title {
+    font-size: 3rem;
+    margin: 0;
+  }
 
-.flex-cards {
-    margin: 100px auto;
-    width: 65%; 
+  main {
+    padding: 50px 0;
+  }
+
+  .container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 40px;
-}
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 70%;
+    gap: 30px;
+  }
 
-.card {
-    /* width: 100%; */
-    /* font-size: 1rem */   
+  .card {
     border-radius: 10px;
     background-color: #D2D79F;
+<<<<<<< Updated upstream
     padding: 50px 100px;
 }
 
@@ -104,3 +126,69 @@ a {
 
 
 
+=======
+    padding: 50px 80px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card:hover {
+    
+    box-shadow: 0 5px 10px #D2D79F;
+    transform: translateY(-5px);
+  }
+
+  a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  footer {
+    background-color: #D2D79F;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .footer-span {
+    margin: 0 10px;
+  }
+
+  @media only screen and (max-width: 992px) {
+    .container {
+      width: 80%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    .container {
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .card {
+      padding: 30px;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+
+    a {
+      font-size: 1.2rem;
+    }
+  }
+>>>>>>> Stashed changes
