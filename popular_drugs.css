@@ -87,7 +87,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 30px;
+   
     height:400px;
 }
 
@@ -95,18 +95,8 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 3rem;
 }
-
-/* @media screen and (max-width: 600px) {
-    .text-item-grid {
-        padding: 2.4rem 3.2rem;
-    }
-
-    .grid-photo {
-        border-radius: 10px;
-    }
-}
-*/
 
 .popular-drugs {
     display: flex;
