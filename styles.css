@@ -1,15 +1,4 @@
-<<<<<<< Updated upstream
-
-/* GLOBAL */
-
-* {
-    margin:0;
-
-}
-html {
-=======
 html, body {
->>>>>>> Stashed changes
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -19,34 +8,8 @@ html, body {
     background: linear-gradient(to bottom, #303030, #483838);
   }
 
-<<<<<<< Updated upstream
-body {
-    height: 100%;
-    overflow: hidden;
-    background-image: linear-gradient(
-        0deg,
-        hsl(0deg 13% 25%) 0%,
-        hsl(139deg 27% 36%) 33%,
-        hsl(142deg 34% 39%) 47%,
-        hsl(139deg 27% 36%) 64%,
-        hsl(0deg 13% 25%) 100%
-      );
-    background-repeat: no-repeat;
-}
-
-a {
-    text-decoration: none;
-}
-
-/* TITLE */
-.title {
-    /* background-color: red; */
-    /* font-size: 3.125rem; */
-    margin: 50px;
-=======
   header {
     background-color: #D2D79F;
->>>>>>> Stashed changes
     text-align: center;
     padding: 50px 0;
   }
@@ -73,60 +36,6 @@ a {
   .card {
     border-radius: 10px;
     background-color: #D2D79F;
-<<<<<<< Updated upstream
-    padding: 50px 100px;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-@media only screen and (max-width: 850px) {
-    
-    .flex-cards {
-        /* margin-top: 130px; */
-        justify-content: space-around;
-        width: 80%;
-    }
-
-    .card {
-        padding: 30px 60px;
-        gap: 20px;
-    }
-}
-
-@media only screen and (max-width: 446px) {
-    
-    .flex-cards {
-        margin-top: 10px;
-        justify-content: center;
-        width: 100%;
-    }
-
-}
-
-@media only screen and (max-width: 350px) {
-
-    .card {
-        padding: 30px 50px;
-        gap: 20px;
-    }
-}
-
-@media only screen and (max-width: 304px) {
-
-    .flex-cards {
-        justify-content: center;
-    }
-    .card {
-        margin-left: -10px;
-        padding: 20px 50px;
-        gap: 20px;
-    }
-}
-
-
-
-=======
     padding: 50px 80px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.4);
     transition: all 0.3s ease-in-out;
@@ -191,4 +100,3 @@ a {
       font-size: 1.2rem;
     }
   }
->>>>>>> Stashed changes
