@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics | RoDX</title>
-    <link rel="stylesheet" href="stats-styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="stats-styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-
-        <div class="year-container">
-            <div class="company-name-container">
-                <p id="company-name">RoDX</p>
-            </div> 
-            <h1 id="year"></h1>
+      <div class="year-container">
+        <div class="company-name-container">
+          <p id="company-name">RoDX</p>
         </div>
+        <h1 id="year"></h1>
+      </div>
 
-        <div class="info-container">
-            <h2 id="title">Statistics Dashboard</h2>
-            <div class="select-info">
-                <label for="select-options">Select Display Type:</label>
-                <select id="select-options">
-                    <option value="Grafic">Grafic</option>
-                    <option value="Tabel">Tabel</option>
-                </select>
-                <button onclick="displayImage()">Submit</button>
-            </div>
-            <div class="content">
-                <img id="display-image" src="#" alt="info" >
-            </div>
+      <div class="info-container">
+        <h2 id="title">Statistics Dashboard</h2>
+        <div class="select-info">
+          <label for="select-options">Select Display Type:</label>
+          <select id="select-options">
+            <option value="Grafic">Grafic</option>
+            <option value="Tabel">Tabel</option>
+          </select>
+          <button onclick="displayImage()">Submit</button>
         </div>
+        <div class="content">
+          <img id="display-image" src="#" alt="info" />
+        </div>
+      </div>
     </div>
-    <script src ="stats-script.js"></script>
-</body>
-
+    <script src="stats-script.js"></script>
+  </body>
 </html>
