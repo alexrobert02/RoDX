@@ -8,8 +8,8 @@ console.log("text " + text);
 function displayImage() {
   let selectedOption = document.getElementById("select-options").value;
   if (selectedOption === "Grafic") {
-    document.getElementById("display-image").src = "./info/grafic.png";
+    document.getElementById("display-image").src = "../static/info/grafic.png";
   } else {
-    document.getElementById("display-image").src = "./info/tabel.png";
+    document.getElementById("display-image").src = "../static/info/tabel.png";
   }
 }
