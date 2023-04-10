@@ -26,7 +26,7 @@ footer {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(400px, 1fr)); /* Use auto-fit and minmax to create a responsive grid */
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 4.8rem;
 }
