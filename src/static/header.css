@@ -51,7 +51,7 @@ header {
 .header-right ul:hover {
   display: block;
   text-align: center;
-  padding: 5px;
+  padding: 15px;
 }
 .year-container {
   display: inline-block;
@@ -62,12 +62,10 @@ header {
   background-color: #90b77d;
 }
 
-
 a {
   text-decoration: none;
   color: #000000;
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 20px;
-  margin-bottom: 20px;
 }

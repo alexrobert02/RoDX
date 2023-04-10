@@ -14,11 +14,3 @@ body {
 .help-h2 {
   color: #42855b;
 }
-
-a {
-  text-decoration: none;
-  color: #000000;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 20px;
-}
