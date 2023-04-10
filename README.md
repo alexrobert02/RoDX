@@ -2,6 +2,6 @@ Nume echipa: Powerpuff dealers
 
 Componenta echipa:
 
-Constantin Ana-Maria
-Manoliu Ana-Delia
-Zaharia Robert Alexandru
+* Constantin Ana-Maria
+* Manoliu Ana-Delia
+* Zaharia Robert Alexandru
