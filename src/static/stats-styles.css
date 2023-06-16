@@ -1,145 +1,177 @@
 * {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-   width: 100vw;
-   height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
-    height: 100vh;
-    overflow: hidden; 
+  height: 100vh;
+  overflow: hidden;
 }
 
 a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 1.1rem;
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.1rem;
 }
 
 .container {
-    display: flex;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .year-container {
-    display: flex;
-    width: 25%;
-    height: 100%;
-    background-color: #483838;
+  display: flex;
+  width: 25%;
+  height: 100%;
+  background-color: #483838;
 }
 
 #year {
-    transform: translateY(40%);
+  transform: translateY(40%);
 }
 
 .company-name-container {
-    height: 100%;
-    width: 6%;
-    background-color: #d2d79f;
+  height: 100%;
+  width: 6%;
+  background-color: #d2d79f;
 }
 
 #company-name {
-    font-size: 1.1rem;
-    font-weight: bold;
-    transform: rotate(-90deg);
-    margin-top: 30px;
-
+  font-size: 1.1rem;
+  font-weight: bold;
+  transform: rotate(-90deg);
+  margin-top: 30px;
 }
 
 #company-name:hover {
-    color:#90b77d;
+  color: #90b77d;
+}
+
+.year-ref {
+  text-align: center;
+  /*top: 40%;*/
+  margin-top: middle;
+  font-size: 3.5rem;
+  color: #90b77d;
+  width: 100%;
 }
 
 h1 {
-    text-align: center;
-    /* top: 40%; */
-    font-size: 3.5rem;
-    color:#90b77d; 
-    width: 100%;
+  text-align: center;
+  /* top: 40%; */
+  font-size: 3.5rem;
+  color: #90b77d;
+  width: 100%;
 }
 
 #stats-title {
-    margin-top: 10px;
-    font-size: 2.5rem;
+  margin-top: 10px;
+  font-size: 2.5rem;
 }
 
 #title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 30px;
-    }
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
 
 .info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    width: 75%;
-    height: 100%;
-    background-color: #d2d79f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 75%;
+  height: 100%;
+  background-color: #d2d79f;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    height: 75%;
-    background-color: #ffffff; 
-    /* background-color: red; */
-    transform: translateX(15%);
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 75%;
+  background-color: #ffffff;
+  /* background-color: red; */
+  transform: translateX(15%);
 }
 
-img{
-    width: 100%;
-    height: auto;
-    /* display: block; */
-    /* transform: translate(15%,30%); */
+img {
+  width: 100%;
+  height: auto;
+  /* display: block; */
+  /* transform: translate(15%,30%); */
 }
 
 .select-info {
-    margin-top: -35px;
-    width: 100%;
-    text-align: center;
+  margin-top: -35px;
+  width: 100%;
+  text-align: center;
 }
 
-
-
 label {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 #browser {
-    width:50%;
-    padding: 2px;
+  width: 50%;
+  padding: 2px;
 }
 
 #submit {
-    padding: 2px;
+  padding: 2px;
 }
 
 @media only screen and (max-width: 768px) {
+  .company-name-container {
+    display: none;
+  }
 
-    .company-name-container {
-        display: none;
-    }
+  .container {
+    flex-direction: column;
+  }
 
-    .container {
-        flex-direction: column;
-    }
-    
-    .year-container {
-        width: 100%;
-        height: 20%;
-    }
+  .year-container {
+    width: 100%;
+    height: 20%;
+  }
 
-    .info-container {
-        width: 100%;
-        height: 80%;
-    }
-
+  .info-container {
+    width: 100%;
+    height: 80%;
+  }
 }
 
+.bullet-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bullet-list li {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.bullet-list li:before {
+  content: "➤"; /* Modific simbolul după preferință */
+  color: #42855b;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.bullet-list li a {
+  color: #483838;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.bullet-list li a:hover {
+  color: #90b77d;
+}

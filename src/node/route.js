@@ -14,6 +14,8 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/popular_drugs.html");
   } else if (requestUrl === "/yearselect") {
     fsPath = path.resolve(appRootPath + "/src/views/select_year.html");
+  } else if (requestUrl === "/statisticdocs") {
+    fsPath = path.resolve(appRootPath + "/src/views/statisticdocs.html");
   } else if (requestUrl === "/statistic") {
     fsPath = path.resolve(appRootPath + "/src/views/statistic.html");
   } else if (path.extname(requestUrl) === ".css") {

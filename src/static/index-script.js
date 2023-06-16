@@ -1,7 +1,3 @@
 function getYear(year) {
-    localStorage.setItem("textvalue", year);
+  localStorage.setItem("textvalue", year);
 }
-
-
-
-
