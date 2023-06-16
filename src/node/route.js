@@ -18,6 +18,10 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/statisticdocs.html");
   } else if (requestUrl === "/statistic") {
     fsPath = path.resolve(appRootPath + "/src/views/statistic.html");
+  } else if (requestUrl === "/login") {
+    fsPath = path.resolve(appRootPath + "/src/views/login.html");
+  } else if (requestUrl === "/register") {
+    fsPath = path.resolve(appRootPath + "/src/views/register.html");
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
