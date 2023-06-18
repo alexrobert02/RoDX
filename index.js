@@ -15,6 +15,10 @@ function isRowEmpty(rowValues) {
 }
 
 async function readExcelFile(filePath) {
+  const yearRegex = /(\d{4})\.xlsx$/; // Regular expression to extract the year from the filePath
+  const yearMatch = filePath.match(yearRegex);
+  const year = yearMatch ? yearMatch[1] : ""; // Extract the year from the filePath, or set it to an empty string if not found
+
   const workbook = new ExcelJS.Workbook();
 
   try {
@@ -34,7 +38,11 @@ async function readExcelFile(filePath) {
       currentrowisempty = isRowEmpty(row.values);
       if (tabledata === true && currentrowisempty === false) {
         const rowData = row.values.slice(1); // Exclude the first cell
-        const collection = collections[currentSection];
+        const collectionKey = year + "_" + currentSection; // Concatenate year with currentSection to form the collection key
+        if (!collections[collectionKey]) {
+          collections[collectionKey] = []; // Initialize the collection array
+        }
+        const collection = collections[collectionKey];
         const data = {};
 
         rowData.forEach((value, index) => {
@@ -45,7 +53,7 @@ async function readExcelFile(filePath) {
         collection.push(data);
       }
       if (tableheader === true && currentrowisempty === true) {
-        delete collections[currentSection];
+        delete collections[year + "_" + currentSection];
         tabledata = false;
         tableheader = false;
       }
@@ -63,22 +71,21 @@ async function readExcelFile(filePath) {
         tabledata = false;
       }
 
-      if (!collections[currentSection]) {
-        collections[currentSection] = []; // Initialize the collection array
-      }
       rowbeforeisempty = currentrowisempty;
     });
 
     console.log("Data read successfully!");
 
     // Return the collections object
-    console.log(collections);
+    //console.log(collections);
     return collections;
   } catch (err) {
     console.error("Error reading Excel file:", err);
     return null;
   }
 }
+
+
 
 async function insertData(collectionName, data) {
   const client = new MongoClient(uri);
