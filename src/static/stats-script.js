@@ -5,38 +5,72 @@ if (localStorage.getItem("textvalue")) {
 }
 //console.log("text " + text);
 // afisare grafic/tabel/pie chart
-function displayImage() {
+function displayImage(collectionName) {
   let selectedOption = document.getElementById("select-options").value;
   let content = document.querySelector(".content");
 
   if (selectedOption === "Bar Chart") {
-    const dataValues = [10, 20, 30, 40, 50];
-    const labels = ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"];
-    const colors = ["#ff0000", "#36a2eb", "#ffce56", "#ff0080", "#676266"];
-    drawCustomGrafic(dataValues, labels, colors);
+    const encodedCollectionName = encodeURIComponent(collectionName);
+    fetch(
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const labels = Object.keys(data).filter(
+          (key) => key !== "_id" && key !== "name" && key !== " Total"
+        ); // Extract labels from the data object
+        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+
+        const colors = generateRandomColors(dataValues.length); // Generate random colors
+
+        drawCustomGrafic(dataValues, labels, colors);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   } else if (selectedOption === "Bubble Chart") {
-    const dataValues = [10, 20, 30, 40, 50];
-    const labels = ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5"];
-    const sizes = [5, 10, 15, 20, 25];
-    const colors = ["#ff0000", "#36a2eb", "#ffce56", "#ff0080", "#676266"];
-    drawBubbleChart(dataValues, labels, sizes, colors);
+    const encodedCollectionName = encodeURIComponent(collectionName);
+    fetch(
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const labels = Object.keys(data).filter(
+          (key) => key !== "_id" && key !== "name" && key !== " Total"
+        ); // Extract labels from the data object
+        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+        const sizes = dataValues.map((value) => value / dataValues.length);
+
+        const colors = generateRandomColors(dataValues.length); // Generate random colors
+
+        drawBubbleChart(dataValues, labels, sizes, colors);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   } else if (selectedOption === "Pie Chart") {
-    // Exemplu de utilizare
-    const dataValues = [15, 20, 30, 17, 8, 7];
-    const colors = [
-      "#ff0000",
-      "#36a2eb",
-      "#ffce56",
-      "#ff0080",
-      "#676266",
-      "#709430",
-    ];
-    const totalValue = 100;
-    drawPieChart(dataValues, colors, totalValue);
+    const encodedCollectionName = encodeURIComponent(collectionName);
+    fetch(
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const labels = Object.keys(data).filter(
+          (key) => key !== "_id" && key !== "name" && key !== " Total"
+        ); // Extract labels from the data object
+        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+
+        const colors = generateRandomColors(dataValues.length); // Generate random colors
+        const totalValue = data.Total;
+        drawPieChart(dataValues, colors, totalValue, labels);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }
 }
 
-function drawPieChart(dataValues, colors, totalValue) {
+function drawPieChart(dataValues, colors, totalValue, labels) {
   document.querySelector(".content").innerHTML = "";
   const canvas = document.createElement("canvas");
   canvas.id = "chartCanvas";
@@ -45,7 +79,7 @@ function drawPieChart(dataValues, colors, totalValue) {
 
   const ctx = canvas.getContext("2d");
   const data = {
-    labels: ["Red", "Blue", "Yellow", "Pink", "Gray", "Green"],
+    labels: labels,
     datasets: [
       {
         data: dataValues,
@@ -79,8 +113,15 @@ function drawCustomGrafic(dataValues, labels, colors) {
   };
 
   new Chart(ctx, {
-    type: "bar", // Aici pot schimba tipul de grafic: bar, line, etc.
+    type: "bar",
     data: data,
+    options: {
+      plugins: {
+        legend: {
+          display: false, // Ascunde legenda
+        },
+      },
+    },
   });
 }
 
@@ -110,6 +151,11 @@ function drawBubbleChart(dataValues, labels, sizes, colors) {
     type: "bubble",
     data: data,
     options: {
+      plugins: {
+        legend: {
+          display: false, // Ascunde legenda
+        },
+      },
       scales: {
         y: {
           ticks: {
@@ -122,4 +168,36 @@ function drawBubbleChart(dataValues, labels, sizes, colors) {
       },
     },
   });
+}
+
+function generateRandomColors(count) {
+  const colors = [];
+  const baseColors = [
+    "#f44336",
+    "#e81e63",
+    "#9c27b0",
+    "#673ab7",
+    "#3f51b5",
+    "#2196f3",
+    "#4caf50",
+    "#00bcd4",
+    "#009688",
+    "#8bc34a",
+    "#cddc39",
+    "#ffeb3b",
+    "#ffc107",
+    "#03a9f4",
+    "#ff9800",
+    "#795548",
+    "#9e9e9e",
+    "#607d8b",
+    "#000000",
+    "#ff5722",
+  ];
+
+  for (let i = 0; i < count; i++) {
+    colors.push(baseColors[i]);
+  }
+
+  return colors;
 }

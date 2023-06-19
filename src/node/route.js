@@ -7,6 +7,7 @@ const { MongoClient } = require("mongodb");
 function handleRequest(req, res) {
   var requestUrl = url.parse(req.url).pathname;
   var fsPath;
+
   if (requestUrl === "/") {
     fsPath = path.resolve(appRootPath + "/src/views/mainpage.html");
   } else if (requestUrl === "/help") {
@@ -24,7 +25,17 @@ function handleRequest(req, res) {
   } else if (requestUrl === "/register") {
     fsPath = path.resolve(appRootPath + "/src/views/register.html");
   } else if (requestUrl === "/getData") {
-    getData()
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const collectionName = urlParams.get("collectionName");
+    const itemName = urlParams.get("itemName");
+
+    if (!collectionName || !itemName) {
+      res.statusCode = 400;
+      res.end("Missing collectionName or itemName parameter");
+      return;
+    }
+
+    getData(collectionName, itemName)
       .then((result) => {
         res.setHeader("Content-Type", "application/json");
         res.statusCode = 200;
@@ -63,21 +74,24 @@ function handleRequest(req, res) {
   });
 }
 
-async function getData() {
+async function getData(collectionName, itemName) {
   const uri =
     "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
-
+  const decodedCollectionName = decodeURIComponent(collectionName);
+  console.log(decodedCollectionName);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
 
     const database = client.db("RoDX");
-    const collection = database.collection(
-      "2021_Admiterile la tratament, în funcție de drogul principal de consum și categoria de vârstă"
-    );
+    const collection = database.collection(decodedCollectionName);
 
-    const result = await collection.findOne({ name: { $regex: /^\s*TOTAL\s*$/ } });
+    const result = await collection.findOne({
+      name: { $regex: new RegExp(`^\\s*${itemName}\\s*$`, "i") },
+    });
+    return result;
+
     return result;
   } catch (error) {
     console.error("Failed to retrieve data from MongoDB", error);
