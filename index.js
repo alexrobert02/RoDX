@@ -148,7 +148,7 @@ filePaths.forEach(async (filePath) => {
     if (collections) {
       // Insert data into respective collections
       Object.entries(collections).forEach(([collectionName, data]) => {
-        insertData(collectionName, data);
+        //insertData(collectionName, data);
       });
     }
   } catch (err) {

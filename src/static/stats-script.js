@@ -10,11 +10,11 @@ if (localStorage.getItem("selectedDocument")) {
 }
 
 let documentName = "";
-if (myDocument.innerHTML = "Admiterea la tratament ca urmare a consumului de droguri") {
+if (myDocument.innerHTML === "Admiterea la tratament ca urmare a consumului de droguri") {
   documentName = "tdi-date-guvern";
-} else if (myDocument.innerHTML = "Bolile infecţioase asociate consumului de droguri injectabile") {
+} else if (myDocument.innerHTML === "Bolile infecţioase asociate consumului de droguri injectabile") {
   documentName = "boli-infectioase";
-} else if (myDocument.innerHTML = "Urgenţe medicale datorate consumului de droguri") {
+} else if (myDocument.innerHTML === "Urgenţe medicale datorate consumului de droguri") {
   documentName = "urgente-medicale";
 }
 
@@ -70,7 +70,7 @@ function displayImage() {
   let selectedTable = document.getElementById("select-table").value;
   let content = document.querySelector(".content");
 
-  const collectionNameWithYear = `${year}_${selectedTable}`;
+  const collectionNameWithYear = `${documentName}-${year}_${selectedTable}`;
   const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
   const encodedSelectedDrug = encodeURIComponent(selectedDrug);
 
@@ -80,9 +80,10 @@ function displayImage() {
     )
       .then((response) => response.json())
       .then((data) => {
-        const labels = Object.keys(data).filter(
-          (key) => key !== "_id" && key !== "name" && key !== " Total"
-        ); // Extract labels from the data object
+        const labels = Object.keys(data).filter((key) => {
+          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+        }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
 
         const colors = generateRandomColors(dataValues.length); // Generate random colors
@@ -98,9 +99,10 @@ function displayImage() {
     )
       .then((response) => response.json())
       .then((data) => {
-        const labels = Object.keys(data).filter(
-          (key) => key !== "_id" && key !== "name" && key !== " Total"
-        ); // Extract labels from the data object
+        const labels = Object.keys(data).filter((key) => {
+          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+        }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
         const sizes = dataValues.map((value) => value / dataValues.length);
 
@@ -118,9 +120,10 @@ function displayImage() {
     )
       .then((response) => response.json())
       .then((data) => {
-        const labels = Object.keys(data).filter(
-          (key) => key !== "_id" && key !== "name" && key !== " Total"
-        ); // Extract labels from the data object
+        const labels = Object.keys(data).filter((key) => {
+          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+        }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
 
         const colors = generateRandomColors(dataValues.length); // Generate random colors
