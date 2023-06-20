@@ -28,6 +28,7 @@
         </div>
         <a class="year-ref" href="/statisticdocs">
           <h1 id="year">#</h1>
+          <h1 id="doc">#</h1>
         </a>
       </div>
 
@@ -35,12 +36,27 @@
         <h2 id="title">Statistics Dashboard</h2>
         <div class="select-info">
           <label for="select-options">Select Display Type:</label>
-          <select id="select-options">
+          <select id="select-options" class = "select">
             <option value="Bar Chart">Bar Chart</option>
             <option value="Bubble Chart">Bubble Chart</option>
             <option value="Pie Chart">Pie Chart</option>
           </select>
-          <button onclick="displayImage('2021_Admiterile la tratament, în funcție de drogul principal de consum și categoria de vârstă')">Submit</button>
+          <label for="select-options">Select Item:</label>
+          <select id="select-drug" class = "select">
+            <option value="1. Opioide (Total)">Opioide</option>
+            <option value="1.1 heroină">Heroina</option>
+            <option value="1.2 metadonă (fără prescripție)">Metadona</option>
+            <option value="TOTAL">TOTAL</option>
+          </select>
+          <button onclick="displayImage()">Submit</button>
+        </div>
+        <div class="select-info2">
+          <label for="select-options">Select Document:</label>
+          <select id="select-table" onchange="fetchDrugOptions()">
+            <option value="Admiterile la tratament, în funcție de drogul principal de consum și sursa de referire">Sursa de referire</option>
+            <option value="Admiterile la tratament, în funcție de drogul principal de consum și categoria de vârstă">Varsta</option>
+            <option value="By Drug">By drug</option>
+          </select>
         </div>
         <div class="content">
           <img id="display-image" src="#" alt="info" />

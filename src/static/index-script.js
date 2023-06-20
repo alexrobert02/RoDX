@@ -1,10 +1,12 @@
 function getYear(year) {
   localStorage.setItem("textvalue", year);
+  document.getElementById("year").textContent = year;
 }
 
-function saveOption(document) {
-  localStorage.setItem("selectedDocument", document);
-  console.log(document);
+function saveOption(doc) {
+  localStorage.setItem("selectedDocument", doc);
+  document.getElementById("doc").textContent = doc;
+  console.log(doc);
 }
 
 

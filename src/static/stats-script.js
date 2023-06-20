@@ -3,16 +3,71 @@ const year = document.getElementById("year");
 if (localStorage.getItem("textvalue")) {
   year.innerHTML = localStorage.getItem("textvalue");
 }
-//console.log("text " + text);
-// afisare grafic/tabel/pie chart
-function displayImage(collectionName) {
+
+const myDocument = document.getElementById("doc");
+if (localStorage.getItem("selectedDocument")) {
+  myDocument.innerHTML = localStorage.getItem("selectedDocument");
+}
+
+// Event listener to the select-table element
+document.getElementById("select-table").addEventListener("change", fetchDrugOptions);
+
+// Function to fetch drug options based on selected collection
+function fetchDrugOptions() {
+  const year = localStorage.getItem("textvalue");
+  const selectedTable = document.getElementById("select-table").value;
+  const collectionNameWithYear = `${year}_${selectedTable}`;
+  console.log(year);
+  console.log(selectedTable);
+  const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
+  console.log(`http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`);
+
+  fetch(`http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length === 0) {
+        console.log("Data array is empty");
+        return;
+      }
+
+      const selectDrugElement = document.getElementById("select-drug");
+
+      // Clear existing options
+      selectDrugElement.innerHTML = "";
+
+      console.log("nu sunt in for");
+      // Add options based on the fetched data
+      for (const option of data) {
+        console.log("sunt in for");
+        const optionElement = document.createElement("option");
+        optionElement.value = option.trim(); // Trim whitespace from the options
+        optionElement.textContent = option.trim(); // Trim whitespace from the options
+        selectDrugElement.appendChild(optionElement);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching drug options:", error);
+    });
+}
+
+fetchDrugOptions();
+
+
+function displayImage() {
+  const year = localStorage.getItem("textvalue");
+  console.log("am intrat aici");
   let selectedOption = document.getElementById("select-options").value;
+  let selectedDrug = document.getElementById("select-drug").value;
+  let selectedTable = document.getElementById("select-table").value;
   let content = document.querySelector(".content");
 
+  const collectionNameWithYear = `${year}_${selectedTable}`;
+  const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
+  const encodedSelectedDrug = encodeURIComponent(selectedDrug);
+
   if (selectedOption === "Bar Chart") {
-    const encodedCollectionName = encodeURIComponent(collectionName);
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -29,9 +84,8 @@ function displayImage(collectionName) {
         console.error("Error fetching data:", error);
       });
   } else if (selectedOption === "Bubble Chart") {
-    const encodedCollectionName = encodeURIComponent(collectionName);
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -49,9 +103,9 @@ function displayImage(collectionName) {
         console.error("Error fetching data:", error);
       });
   } else if (selectedOption === "Pie Chart") {
-    const encodedCollectionName = encodeURIComponent(collectionName);
+    console.log(encodedSelectedDrug);
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=TOTAL`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
     )
       .then((response) => response.json())
       .then((data) => {

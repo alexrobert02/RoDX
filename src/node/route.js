@@ -46,6 +46,28 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
+  } else if (requestUrl === "/getOptions") {
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const collectionName = urlParams.get("collectionName");
+
+    if (!collectionName) {
+      res.statusCode = 400;
+      res.end("Missing collectionName");
+      return;
+    }
+
+    getOptions(collectionName)
+      .then((result) => {
+        res.setHeader("Content-Type", "application/json");
+        res.statusCode = 200;
+        res.end(JSON.stringify(result));
+      })
+      .catch((err) => {
+        res.statusCode = 500;
+        res.end("Error retrieving data from MongoDB");
+      });
+    return;
+
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
@@ -74,11 +96,38 @@ function handleRequest(req, res) {
   });
 }
 
+async function getOptions(collectionName) {
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  const decodedCollectionName = decodeURIComponent(collectionName);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("RoDX");
+    const collection = database.collection(decodedCollectionName);
+
+    const options = await collection.distinct("name");
+    const filteredOptions = options.filter(option => option.length <= 40);
+
+    return filteredOptions;
+
+  } catch (error) {
+    console.error("Failed to retrieve options from MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
+
 async function getData(collectionName, itemName) {
   const uri =
     "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
   const decodedCollectionName = decodeURIComponent(collectionName);
+  const decodedItemName = decodeURIComponent(itemName);
+  console.log(decodedItemName);
   console.log(decodedCollectionName);
   try {
     await client.connect();
@@ -87,8 +136,11 @@ async function getData(collectionName, itemName) {
     const database = client.db("RoDX");
     const collection = database.collection(decodedCollectionName);
 
+    const regexItemName = decodedItemName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    const regexQuery = new RegExp(regexItemName);
+
     const result = await collection.findOne({
-      name: { $regex: new RegExp(`^\\s*${itemName}\\s*$`, "i") },
+      name: regexQuery
     });
     return result;
 
