@@ -21,6 +21,32 @@ if (myDocument.innerHTML === "Admiterea la tratament ca urmare a consumului de d
 // Event listener to the select-table element
 document.getElementById("select-table").addEventListener("change", fetchDrugOptions);
 
+function fetchTableOptions() {
+  const year = localStorage.getItem("textvalue");
+  const documentNameWithYear = `${documentName}-${year}`;
+  console.log(documentNameWithYear);
+  fetch(`http://localhost:3000/getCollections?documentName=${documentNameWithYear}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length === 0) {
+        console.log("Collection array is empty");
+        return;
+      }
+
+      const selectTableElement = document.getElementById("select-table");
+      selectTableElement.innerHTML = "";  
+
+      for (const option of data) {
+        const optionElement = document.createElement("option");
+        optionElement.value = option.trim(); // Trim whitespace from the options
+        optionElement.textContent = option.trim(); // Trim whitespace from the options
+        selectTableElement.appendChild(optionElement);
+      }
+      fetchDrugOptions();
+    })
+}
+fetchTableOptions();
+
 // Function to fetch drug options based on selected collection
 function fetchDrugOptions() {
   const year = localStorage.getItem("textvalue");
@@ -58,8 +84,6 @@ function fetchDrugOptions() {
       console.error("Error fetching drug options:", error);
     });
 }
-
-fetchDrugOptions();
 
 
 function displayImage() {

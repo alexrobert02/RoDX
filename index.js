@@ -142,16 +142,16 @@ const filePaths = [
   "./docs/urgente-medicale-2017.xlsx",
 ];
 
-filePaths.forEach(async (filePath) => {
-  try {
-    const collections = await readExcelFile(filePath);
-    if (collections) {
-      // Insert data into respective collections
-      Object.entries(collections).forEach(([collectionName, data]) => {
-        //insertData(collectionName, data);
-      });
-    }
-  } catch (err) {
-    console.error("Error processing file:", err);
-  }
-});
+// filePaths.forEach(async (filePath) => {
+//   try {
+//     const collections = await readExcelFile(filePath);
+//     if (collections) {
+//       // Insert data into respective collections
+//       Object.entries(collections).forEach(([collectionName, data]) => {
+//         insertData(collectionName, data);
+//       });
+//     }
+//   } catch (err) {
+//     console.error("Error processing file:", err);
+//   }
+// });
