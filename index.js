@@ -15,9 +15,9 @@ function isRowEmpty(rowValues) {
 }
 
 async function readExcelFile(filePath) {
-  const yearRegex = /(\d{4})\.xlsx$/; // Regular expression to extract the year from the filePath
-  const yearMatch = filePath.match(yearRegex);
-  const year = yearMatch ? yearMatch[1] : ""; // Extract the year from the filePath, or set it to an empty string if not found
+  const documentTitleRegex = /\/([^/]+)\.xlsx$/; // Regular expression to extract the document title from the filePath
+  const documentTitleMatch = filePath.match(documentTitleRegex);
+  const documentTitle = documentTitleMatch ? documentTitleMatch[1] : ""; // Extract the document title from the filePath, or set it to an empty string if not found
 
   const workbook = new ExcelJS.Workbook();
 
@@ -38,7 +38,7 @@ async function readExcelFile(filePath) {
       currentrowisempty = isRowEmpty(row.values);
       if (tabledata === true && currentrowisempty === false) {
         const rowData = row.values.slice(1); // Exclude the first cell
-        const collectionKey = year + "_" + currentSection; // Concatenate year with currentSection to form the collection key
+        const collectionKey = documentTitle + "_" + currentSection; // Concatenate documentTitle with currentSection to form the collection key
         if (!collections[collectionKey]) {
           collections[collectionKey] = []; // Initialize the collection array
         }
@@ -53,7 +53,7 @@ async function readExcelFile(filePath) {
         collection.push(data);
       }
       if (tableheader === true && currentrowisempty === true) {
-        delete collections[year + "_" + currentSection];
+        delete collections[documentTitle + "_" + currentSection];
         tabledata = false;
         tableheader = false;
       }
@@ -116,12 +116,30 @@ server.listen(PORT, function () {
 // Read the Excel file and extract data from multiple tables
 var workbook = xlsx.readFile("./docs/tdi-date-guvern-2021.xlsx");
 
-// Usage:
-//const filePath = "./docs/tdi-date-guvern-2021.xlsx";
 const filePaths = [
+  "./docs/tdi-date-guvern-2022.xlsx",
+  "./docs/boli-infectioase-2022.xlsx",
+  "./docs/urgente-medicale-2022.xlsx",
+
   "./docs/tdi-date-guvern-2021.xlsx",
   "./docs/boli-infectioase-2021.xlsx",
-  "./docs/urgente_medicale_2021.xlsx",
+  "./docs/urgente-medicale-2021.xlsx",
+
+  "./docs/tdi-date-guvern-2020.xlsx",
+  "./docs/boli-infectioase-2020.xlsx",
+  "./docs/urgente-medicale-2020.xlsx",
+
+  "./docs/tdi-date-guvern-2019.xlsx",
+  "./docs/boli-infectioase-2019.xlsx",
+  "./docs/urgente-medicale-2019.xlsx",
+
+  "./docs/tdi-date-guvern-2018.xlsx",
+  "./docs/boli-infectioase-2018.xlsx",
+  "./docs/urgente-medicale-2018.xlsx",
+
+  "./docs/tdi-date-guvern-2017.xlsx",
+  "./docs/boli-infectioase-2017.xlsx",
+  "./docs/urgente-medicale-2017.xlsx",
 ];
 
 filePaths.forEach(async (filePath) => {
@@ -130,7 +148,7 @@ filePaths.forEach(async (filePath) => {
     if (collections) {
       // Insert data into respective collections
       Object.entries(collections).forEach(([collectionName, data]) => {
-        //insertData(collectionName, data);
+        insertData(collectionName, data);
       });
     }
   } catch (err) {

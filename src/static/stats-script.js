@@ -9,6 +9,15 @@ if (localStorage.getItem("selectedDocument")) {
   myDocument.innerHTML = localStorage.getItem("selectedDocument");
 }
 
+let documentName = "";
+if (myDocument.innerHTML = "Admiterea la tratament ca urmare a consumului de droguri") {
+  documentName = "tdi-date-guvern";
+} else if (myDocument.innerHTML = "Bolile infecţioase asociate consumului de droguri injectabile") {
+  documentName = "boli-infectioase";
+} else if (myDocument.innerHTML = "Urgenţe medicale datorate consumului de droguri") {
+  documentName = "urgente-medicale";
+}
+
 // Event listener to the select-table element
 document.getElementById("select-table").addEventListener("change", fetchDrugOptions);
 
@@ -16,7 +25,7 @@ document.getElementById("select-table").addEventListener("change", fetchDrugOpti
 function fetchDrugOptions() {
   const year = localStorage.getItem("textvalue");
   const selectedTable = document.getElementById("select-table").value;
-  const collectionNameWithYear = `${year}_${selectedTable}`;
+  const collectionNameWithYear = `${documentName}-${year}_${selectedTable}`;
   console.log(year);
   console.log(selectedTable);
   const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
