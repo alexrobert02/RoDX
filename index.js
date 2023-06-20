@@ -71,6 +71,12 @@ async function readExcelFile(filePath) {
         tabledata = false;
       }
 
+      if (rowbeforeisempty === true && currentrowisempty === true) {
+        currentSection = "";
+        tabledata = false;
+        tableheader = false;
+      }
+
       rowbeforeisempty = currentrowisempty;
     });
 

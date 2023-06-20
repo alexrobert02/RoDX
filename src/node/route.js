@@ -159,9 +159,8 @@ async function getOptions(collectionName) {
     const collection = database.collection(decodedCollectionName);
 
     const options = await collection.distinct("name");
-    const filteredOptions = options.filter(option => option.length <= 40);
 
-    return filteredOptions;
+    return options;
 
   } catch (error) {
     console.error("Failed to retrieve options from MongoDB", error);
