@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Statistics | RoDX</title>
     <link
@@ -36,28 +37,50 @@
         <h2 id="title">Statistics Dashboard</h2>
         <div class="select-info">
           <label for="select-options">Select Display Type:</label>
-          <select id="select-options" class = "select">
+          <select id="select-options" class="select">
             <option value="Pie Chart">Pie Chart</option>
             <option value="Bar Chart">Bar Chart</option>
             <option value="Bubble Chart">Bubble Chart</option>
+            <option value="CSV Table">CSV Table</option>
           </select>
-          <label for="select-options">Select Item:</label>
-          <select id="select-drug" class = "select">
+          <label for="select-options2">Select Item:</label>
+          <select id="select-drug" class="select">
             <option value="TOTAL">TOTAL</option>
           </select>
           <button onclick="displayImage()">Submit</button>
         </div>
         <div class="select-info2">
-          <label for="select-options">Select Document:</label>
+          <label for="select-options3">Select Document:</label>
           <select id="select-table" onchange="fetchDrugOptions()">
             <option value="Document">Document</option>
           </select>
+          <button onclick="exportChartToPng()">Export as PNG</button>
         </div>
         <div class="content">
           <img id="display-image" src="#" alt="info" />
+          <canvas id="chartCanvas"></canvas>
         </div>
       </div>
     </div>
     <script src="../static/stats-script.js"></script>
+    <script>
+      // function exportChartToSVG() {
+      //   let context = document.getElementById("chartCanvas");
+      //   context.width = 400;
+      //   context.height = 400;
+
+      //   // create the chart
+      //   let canvas = document.getElementById("chartCanvas");
+
+      //   // Get the chart instance
+      //   let chart = Chart.instances[0];
+
+      //   // and generate the PNG and SVG links!
+      //   // (the code that does this is in the 'libs' folder > export.js)
+
+      //   // arguments: filename, link text, the chart, and its settings
+      //   createSvgLink("chart.svg", "SVG", chart, chart.options);
+      // }
+    </script>
   </body>
 </html>

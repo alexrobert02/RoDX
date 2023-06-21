@@ -10,22 +10,52 @@ if (localStorage.getItem("selectedDocument")) {
 }
 
 let documentName = "";
-if (myDocument.innerHTML === "Admiterea la tratament ca urmare a consumului de droguri") {
+if (
+  myDocument.innerHTML ===
+  "Admiterea la tratament ca urmare a consumului de droguri"
+) {
   documentName = "tdi-date-guvern";
-} else if (myDocument.innerHTML === "Bolile infecţioase asociate consumului de droguri injectabile") {
+} else if (
+  myDocument.innerHTML ===
+  "Bolile infecţioase asociate consumului de droguri injectabile"
+) {
   documentName = "boli-infectioase";
-} else if (myDocument.innerHTML === "Urgenţe medicale datorate consumului de droguri") {
+} else if (
+  myDocument.innerHTML === "Urgenţe medicale datorate consumului de droguri"
+) {
   documentName = "urgente-medicale";
 }
 
+function hideSelectDrug() {
+  const selectOptions = document.getElementById("select-options");
+  const selectDrug = document.getElementById("select-drug");
+  const selectDrugLabel = document.querySelector(
+    "label[for='select-options2']"
+  );
+
+  selectOptions.onchange = function () {
+    if (selectOptions.value === "CSV Table") {
+      selectDrug.style.display = "none";
+      selectDrugLabel.style.display = "none";
+    } else {
+      selectDrug.style.display = "inline-block";
+      selectDrugLabel.style.display = "inline-block";
+    }
+  };
+}
+
 // Event listener to the select-table element
-document.getElementById("select-table").addEventListener("change", fetchDrugOptions);
+document
+  .getElementById("select-table")
+  .addEventListener("change", fetchDrugOptions);
 
 function fetchTableOptions() {
   const year = localStorage.getItem("textvalue");
   const documentNameWithYear = `${documentName}-${year}`;
   console.log(documentNameWithYear);
-  fetch(`http://localhost:3000/getCollections?documentName=${documentNameWithYear}`)
+  fetch(
+    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`
+  )
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
@@ -34,7 +64,7 @@ function fetchTableOptions() {
       }
 
       const selectTableElement = document.getElementById("select-table");
-      selectTableElement.innerHTML = "";  
+      selectTableElement.innerHTML = "";
 
       for (const option of data) {
         const optionElement = document.createElement("option");
@@ -43,7 +73,7 @@ function fetchTableOptions() {
         selectTableElement.appendChild(optionElement);
       }
       fetchDrugOptions();
-    })
+    });
 }
 fetchTableOptions();
 
@@ -55,9 +85,13 @@ function fetchDrugOptions() {
   console.log(year);
   console.log(selectedTable);
   const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
-  console.log(`http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`);
+  console.log(
+    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`
+  );
 
-  fetch(`http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`)
+  fetch(
+    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`
+  )
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
@@ -85,7 +119,6 @@ function fetchDrugOptions() {
     });
 }
 
-
 function displayImage() {
   const year = localStorage.getItem("textvalue");
   console.log("am intrat aici");
@@ -106,7 +139,11 @@ function displayImage() {
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
           const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
-          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+          return (
+            trimmedKey !== "_id" &&
+            trimmedKey !== "name" &&
+            trimmedKey.replace(/\s/g, "") !== "Total"
+          );
         }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
 
@@ -125,7 +162,11 @@ function displayImage() {
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
           const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
-          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+          return (
+            trimmedKey !== "_id" &&
+            trimmedKey !== "name" &&
+            trimmedKey.replace(/\s/g, "") !== "Total"
+          );
         }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
         const sizes = dataValues.map((value) => value / dataValues.length);
@@ -146,7 +187,11 @@ function displayImage() {
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
           const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
-          return trimmedKey !== "_id" && trimmedKey !== "name" && trimmedKey.replace(/\s/g, "") !== "Total";
+          return (
+            trimmedKey !== "_id" &&
+            trimmedKey !== "name" &&
+            trimmedKey.replace(/\s/g, "") !== "Total"
+          );
         }); // Extract labels from the data object
         const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
 
@@ -156,6 +201,50 @@ function displayImage() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      });
+  } else if (selectedOption === "CSV Table") {
+    fetch(
+      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          console.log("Data array is empty");
+          return;
+        }
+
+        const tableElement = document.createElement("table");
+        tableElement.className = "csv-table";
+
+        // Create the table headers
+        const tableHeaders = Object.keys(data[0]).filter(
+          (header) => header !== "_id"
+        );
+        const headerRow = document.createElement("tr");
+        for (const header of tableHeaders) {
+          const th = document.createElement("th");
+          th.textContent = header;
+          headerRow.appendChild(th);
+        }
+        tableElement.appendChild(headerRow);
+
+        // Create the table rows
+        for (const item of data) {
+          const row = document.createElement("tr");
+          for (const header of tableHeaders) {
+            const td = document.createElement("td");
+            td.textContent = item[header];
+            row.appendChild(td);
+          }
+          tableElement.appendChild(row);
+        }
+
+        const content = document.querySelector(".content");
+        content.innerHTML = "";
+        content.appendChild(tableElement);
+      })
+      .catch((error) => {
+        console.error("Error fetching collection:", error);
       });
   }
 }
@@ -291,3 +380,18 @@ function generateRandomColors(count) {
 
   return colors;
 }
+
+/***********export to png */
+function exportChartToPng() {
+  var canvas = document.getElementById("chartCanvas");
+  var collectionNameWithYear = `${documentName}-${localStorage.getItem(
+    "textvalue"
+  )}_${document.getElementById("select-table").value}`;
+  var url = canvas.toDataURL("image/png");
+  var link = document.createElement("a");
+  link.href = url;
+  link.download = collectionNameWithYear + ".png";
+  link.click();
+}
+
+/***********************export to svg */
