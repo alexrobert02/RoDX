@@ -139,13 +139,13 @@
    }
    
    #email {
-       background-image: url('../images/mail_icon.png');
+       background-image: url('../static/images/mail_icon.png');
        background-repeat: no-repeat;
        background-position: center right 34px;
    }
 
    #password {
-    background-image: url('../images/password_icon.png');
+    background-image: url('../static/images/password_icon.png');
     background-repeat: no-repeat;
     background-position: center right 34px;
     }

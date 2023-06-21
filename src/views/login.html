@@ -21,15 +21,16 @@
                     <p>Enter your account details</p>
                 </section>
 
-                <form action="">
+                <form action="/login"
+                      method="POST">
                     <div class="field">
                         <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="Enter your email" required>
+                        <input id="email" type="email" name="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="field">
                         <label for="password">Password</label>
-                        <input id="password" type="password" placeholder="Enter your password" required>
+                        <input id="password" type="password" name="password" placeholder="Enter your password" required>
                     </div>
 
                     <input type="submit" value="Sign in">

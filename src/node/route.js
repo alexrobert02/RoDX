@@ -3,10 +3,35 @@ var fs = require("fs");
 var appRootPath = require("app-root-path");
 var path = require("path");
 const { MongoClient } = require("mongodb");
+var RegisterRoute = require("./registerDB.js");
+var LoginRoute = require("./loginDB.js");
+var cookie = require("cookie");
 
 function handleRequest(req, res) {
   var requestUrl = url.parse(req.url).pathname;
   var fsPath;
+
+  if (
+    (requestUrl === "/help" ||
+      requestUrl === "/druglist" ||
+      requestUrl === "/yearselect" ||
+      requestUrl === "/statisticdocs" ||
+      requestUrl === "/statistic" ||
+      requestUrl === "/") &&
+    !isLoggedIn(req)
+  ) {
+    res.statusCode = 302;
+    res.setHeader("Location", "/login");
+    res.end();
+    return;
+  }
+
+  if ((requestUrl === "/login" || requestUrl === "/register") && isLoggedIn(req)) {
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
+    res.end();
+    return;
+  }
 
   if (requestUrl === "/") {
     fsPath = path.resolve(appRootPath + "/src/views/mainpage.html");
@@ -127,6 +152,25 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/404.html");
   }
 
+
+  if (requestUrl === "/login" && req.method === "POST") {
+    LoginRoute(req, res);
+    return;
+  } else if (requestUrl === "/register" && req.method === "POST") {
+    RegisterRoute(req, res);
+    return;
+  } else if (requestUrl === "/logout") {
+    res.setHeader(
+      "Set-Cookie",
+      "Logat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    );
+    res.statusCode = 302;
+    res.setHeader("Location", "/login");
+    res.end();
+    return;
+  }
+
+
   fs.stat(fsPath, function (err, stat) {
     if (err) {
       console.log("ERROR :(((: " + err);
@@ -244,6 +288,17 @@ async function getCollection(collectionName) {
     throw error;
   } finally {
     await client.close();
+  }
+}
+
+function isLoggedIn(req) {
+  var cookies = cookie.parse(req.headers.cookie || "");
+
+  if (cookies.Logat) {
+
+    return true;
+  } else {
+    return false;
   }
 }
 
