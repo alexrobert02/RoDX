@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Year Selection | RoDX</title>
     <link
       rel="icon"
@@ -15,11 +16,65 @@
     <link rel="stylesheet" href="../static/main-styles.css" />
   </head>
   <body>
-    <header>
+    <header class="header-container">
       <div class="header-left">
-        <a href="/">Acasa</a>
+        <a href="/"> Acasa </a>
       </div>
+
       <div class="header-right">
+        <div class="statistics">
+          <a href="/yearselect">Statistici</a>
+          <ul>
+            <li>
+              <a
+                onclick="getYear(2017)"
+                href="/statisticdocs"
+                class="year-container"
+                >2018</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2018)"
+                href="/statisticdocs"
+                class="year-container"
+                >2019</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2019)"
+                href="/statisticdocs"
+                class="year-container"
+                >2020</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2020)"
+                href="/statisticdocs"
+                class="year-container"
+                >2021</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2021)"
+                href="/statisticdocs"
+                class="year-container"
+                >2022</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2022)"
+                href="/statisticdocs"
+                class="year-container"
+                >2023</a
+              >
+            </li>
+          </ul>
+        </div>
         <a href="/yearselect">Statistici</a>
         <ul>
           <li>

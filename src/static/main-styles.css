@@ -1,12 +1,21 @@
-html,
-body {
-  height: 100%;
+* {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Roboto Flex', sans-serif;
 }
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #C4D6C7;
+  overflow-x: hidden;
+}
+
 
 /************************* main page ************************/
 .homepage {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,22 +24,28 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
   filter: brightness(90%) contrast(110%);
   filter: hue-rotate(20deg) saturate(120%);
   opacity: 0.7;
 }
+
+.homepage h1 {
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
 .main-title {
   font-family: Arial, sans-serif;
-  font-size: 5rem;
+  font-size: 4em;
   font-weight: bold;
   text-align: center;
-  margin-top: -150px;
+  /* margin-top: -150px; */
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 30px #fff,
     0 0 40px #90b77d, 0 0 50px #90b77d, 0 0 60px #90b77d, 0 0 30px #fff,
     0 0 30px #fff, 0 0 70px #d2d79f, 0 0 80px #d2d79f, 0 0 90px #d2d79f,
     0 0 30px #fff;
 }
+
+
 .main-button {
   font-family: Arial, sans-serif;
   font-size: 1.6rem;
@@ -44,9 +59,9 @@ body {
   border: none;
   box-shadow: 0 6px 10px 0 rgba(245, 242, 242, 0.612);
   transition: all 0.2s ease-in-out;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  position: fixed;
+    bottom: 0;
+    right: 0;
 }
 .main-button:hover {
   transform: translateY(-5px);

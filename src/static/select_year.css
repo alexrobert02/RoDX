@@ -1,5 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Roboto Flex', sans-serif;
+}
+
 body {
+  width: 100vw;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #303030, #483838);
+  overflow-x: hidden;
+
 }
 
 main {
