@@ -1,6 +1,8 @@
 var http = require("http");
 var Routes = require("./src/node/route.js");
 var xlsx = require("xlsx"); // Import the xlsx library
+const fs = require('fs');
+const path = require('path');
 const ExcelJS = require("exceljs");
 const { MongoClient } = require("mongodb"); // Import the MongoClient
 
@@ -15,7 +17,7 @@ function isRowEmpty(rowValues) {
 }
 
 async function readExcelFile(filePath) {
-  const documentTitleRegex = /\/([^/]+)\.xlsx$/; // Regular expression to extract the document title from the filePath
+  const documentTitleRegex = /\\([^\\]+)\.xlsx$/; // Regular expression to extract the document title from the filePath
   const documentTitleMatch = filePath.match(documentTitleRegex);
   const documentTitle = documentTitleMatch ? documentTitleMatch[1] : ""; // Extract the document title from the filePath, or set it to an empty string if not found
 
@@ -119,45 +121,51 @@ server.listen(PORT, function () {
   console.log("Server listening on: http://localhost:%s", PORT);
 });
 
-// Read the Excel file and extract data from multiple tables
-var workbook = xlsx.readFile("./docs/tdi-date-guvern-2021.xlsx");
+// Function to read all files in a directory
+function readFilesInDirectory(directoryPath) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(files);
+      }
+    });
+  });
+}
 
-const filePaths = [
-  "./docs/tdi-date-guvern-2022.xlsx",
-  "./docs/boli-infectioase-2022.xlsx",
-  "./docs/urgente-medicale-2022.xlsx",
+// Function to check if a file is an Excel file
+function isExcelFile(filePath) {
+  return filePath.toLowerCase().endsWith(".xlsx");
+}
 
-  "./docs/tdi-date-guvern-2021.xlsx",
-  "./docs/boli-infectioase-2021.xlsx",
-  "./docs/urgente-medicale-2021.xlsx",
+// Function to process all Excel files in a directory
+async function processExcelFilesInDirectory(directoryPath) {
+  try {
+    const files = await readFilesInDirectory(directoryPath);
 
-  "./docs/tdi-date-guvern-2020.xlsx",
-  "./docs/boli-infectioase-2020.xlsx",
-  "./docs/urgente-medicale-2020.xlsx",
+    for (const file of files) {
+      const filePath = path.join(directoryPath, file);
 
-  "./docs/tdi-date-guvern-2019.xlsx",
-  "./docs/boli-infectioase-2019.xlsx",
-  "./docs/urgente-medicale-2019.xlsx",
+      if (isExcelFile(filePath)) {
+        try {
+          const collections = await readExcelFile(filePath);
+          if (collections) {
+            // Insert data into respective collections
+            Object.entries(collections).forEach(([collectionName, data]) => {
+              insertData(collectionName, data);
+            });
+          }
+        } catch (err) {
+          console.error("Error processing file:", err);
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Error reading directory:", err);
+  }
+}
 
-  "./docs/tdi-date-guvern-2018.xlsx",
-  "./docs/boli-infectioase-2018.xlsx",
-  "./docs/urgente-medicale-2018.xlsx",
+const folderPath = "./docs"; // Specify the folder path here
 
-  "./docs/tdi-date-guvern-2017.xlsx",
-  "./docs/boli-infectioase-2017.xlsx",
-  "./docs/urgente-medicale-2017.xlsx",
-];
-
-// filePaths.forEach(async (filePath) => {
-//   try {
-//     const collections = await readExcelFile(filePath);
-//     if (collections) {
-//       // Insert data into respective collections
-//       Object.entries(collections).forEach(([collectionName, data]) => {
-//         insertData(collectionName, data);
-//       });
-//     }
-//   } catch (err) {
-//     console.error("Error processing file:", err);
-//   }
-// });
+processExcelFilesInDirectory(folderPath);
