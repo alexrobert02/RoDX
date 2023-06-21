@@ -29,20 +29,27 @@ if (
 function hideSelectDrug() {
   const selectOptions = document.getElementById("select-options");
   const selectDrug = document.getElementById("select-drug");
-  const selectDrugLabel = document.querySelector(
-    "label[for='select-options2']"
-  );
+  const selectDrugLabel = document.querySelector("label[for='select-options2']");
+  const exportButton = document.getElementById("export-button");
 
   selectOptions.onchange = function () {
     if (selectOptions.value === "CSV Table") {
       selectDrug.style.display = "none";
       selectDrugLabel.style.display = "none";
+      exportButton.style.display = "none";
     } else {
       selectDrug.style.display = "inline-block";
       selectDrugLabel.style.display = "inline-block";
+      exportButton.style.display = "inline-block";
     }
   };
 }
+
+// Call the function when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+  hideSelectDrug();
+});
+
 
 // Event listener to the select-table element
 document
