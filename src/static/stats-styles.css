@@ -183,3 +183,20 @@ label {
 }
 
 /*******************TABLE***********************/
+
+.content {
+  max-height: 500px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}
+
+.csv-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.csv-table th,
+.csv-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}

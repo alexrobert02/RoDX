@@ -89,6 +89,28 @@ function handleRequest(req, res) {
         res.end("Error retrieving collections from MongoDB");
       });
     return;
+  } else if (requestUrl === "/getCollection") {
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const collectionName = urlParams.get("collectionName");
+
+    if (!collectionName) {
+      res.statusCode = 400;
+      res.end("Missing collectionName");
+      return;
+    }
+
+    getCollection(collectionName)
+      .then((result) => {
+        res.setHeader("Content-Type", "application/json");
+        res.statusCode = 200;
+        res.end(JSON.stringify(result));
+      })
+      .catch((err) => {
+        res.statusCode = 500;
+        res.end("Error retrieving collection from MongoDB");
+      });
+    return;
+
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
@@ -196,6 +218,29 @@ async function getData(collectionName, itemName) {
     return result;
   } catch (error) {
     console.error("Failed to retrieve data from MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
+
+async function getCollection(collectionName) {
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  const decodedCollectionName = decodeURIComponent(collectionName);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("RoDX");
+    const collection = database.collection(decodedCollectionName);
+
+    const result = await collection.find().toArray();
+
+    return result;
+  } catch (error) {
+    console.error("Failed to retrieve collection from MongoDB", error);
     throw error;
   } finally {
     await client.close();
