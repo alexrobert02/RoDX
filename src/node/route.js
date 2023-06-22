@@ -355,7 +355,7 @@ async function getUsers() {
     await client.connect();
     console.log("Connected to MongoDB");
 
-    const database = client.db("RoDX");
+    const database = client.db("User");
     const collection = database.collection("users");
 
     const query = { role: { $ne: "admin" } };
