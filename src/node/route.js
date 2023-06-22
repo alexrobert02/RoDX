@@ -85,6 +85,27 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
+  } else if (requestUrl === "/getUser") {
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const email = urlParams.get("email");
+    if (!email) {
+      res.statusCode = 400;
+      res.end("Missing email");
+      return;
+    }
+
+    getUser(email)
+      .then((result) => {
+        res.setHeader("Content-Type", "application/json");
+        res.statusCode = 200;
+        res.end(JSON.stringify(result));
+      })
+      .catch((err) => {
+        res.statusCode = 500;
+        res.end("Error retrieving data from MongoDB");
+      });
+    return;
+
   } else if (requestUrl === "/getOptions") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
@@ -484,3 +505,29 @@ async function updateUser(email, userData) {
     await client.close();
   }
 }
+
+async function getUser(email) {
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("User");
+    const collection = database.collection("users");
+
+    const query = { email };
+    const projection = { _id: 0 };
+
+    const result = await collection.findOne(query, { projection });
+
+    return result;
+  } catch (error) {
+    console.error("Failed to retrieve user from MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
+
