@@ -139,6 +139,41 @@ function handleRequest(req, res) {
         res.end("Error retrieving collection from MongoDB");
       });
     return;
+
+  } else if (requestUrl === "/getAllUsers") {
+    getUsers()
+      .then((result) => {
+        res.setHeader("Content-Type", "application/json");
+        res.statusCode = 200;
+        res.end(JSON.stringify(result));
+      })
+      .catch((err) => {
+        res.statusCode = 500;
+        res.end("Error retrieving users from MongoDB");
+      });
+    return;
+
+  } else if (requestUrl === "/deleteUser") {
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const email = urlParams.get("email");
+  
+    if (!email) {
+      res.statusCode = 400;
+      res.end("Missing userEmail");
+      return;
+    }
+  
+    deleteUser(email)
+      .then((result) => {
+        res.setHeader("Content-Type", "application/json");
+        res.statusCode = 200;
+        res.end(JSON.stringify(result));
+      })
+      .catch((err) => {
+        res.statusCode = 500;
+        res.end("Error deleting user from MongoDB");
+      });
+    return;
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
@@ -302,3 +337,57 @@ function isLoggedIn(req) {
 }
 
 module.exports = handleRequest;
+
+async function getUsers() {
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("RoDX");
+    const collection = database.collection("users");
+
+    const query = { role: { $ne: "admin" } };
+    const projection = { _id: 0 };
+
+    const result = await collection.find(query).project(projection).toArray();
+
+    return result;
+  } catch (error) {
+    console.error("Failed to retrieve users from MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
+
+async function deleteUser(email) {
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("RoDX");
+    const collection = database.collection("users");
+
+    const result = await collection.deleteOne({ email });
+
+    if (result.deletedCount === 1) {
+      res.statusCode = 200;
+      res.end("User deleted successfully");
+    } else {
+      res.statusCode = 404;
+      res.end("User not found");
+    }
+    
+  } catch (error) {
+    console.error("Failed to delete user from MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
