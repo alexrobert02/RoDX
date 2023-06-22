@@ -53,6 +53,8 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/login.html");
   } else if (requestUrl === "/register") {
     fsPath = path.resolve(appRootPath + "/src/views/register.html");
+  } else if (requestUrl === "/myaccount") {
+    fsPath = path.resolve(appRootPath + "/src/views/myaccount.html");
   } else if (requestUrl === "/admin") {
     if (isAdminLoggedIn(req)) {
       fsPath = path.resolve(appRootPath + "/src/views/admin.html");
@@ -146,11 +148,10 @@ function handleRequest(req, res) {
         res.end("Error retrieving collection from MongoDB");
       });
     return;
-
   } else if (requestUrl === "/updateUser") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const email = urlParams.get("email");
-  
+
     if (!email) {
       res.statusCode = 400;
       res.end("Missing email");
@@ -158,15 +159,15 @@ function handleRequest(req, res) {
     }
 
     // Parse the request body
-    let body = '';
-    req.on('data', (chunk) => {
+    let body = "";
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
 
-    req.on('end', () => {
+    req.on("end", () => {
       try {
         const userData = JSON.parse(body);
-  
+
         // Update the user data in the database (assuming you have a function called `updateUser`)
         updateUser(email, userData)
           .then((result) => {
@@ -185,7 +186,6 @@ function handleRequest(req, res) {
     });
 
     return;
-  
   } else if (requestUrl === "/getAllUsers") {
     getUsers()
       .then((result) => {
@@ -198,36 +198,35 @@ function handleRequest(req, res) {
         res.end("Error retrieving users from MongoDB");
       });
     return;
-
-  } else if (requestUrl === "/deleteUser" && req.method === "DELETE" ) {
+  } else if (requestUrl === "/deleteUser" && req.method === "DELETE") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const email = urlParams.get("email");
-  
+
     if (!email) {
       res.statusCode = 400;
       res.end("Missing userEmail");
       return;
     }
-  
+
     deleteUser(email)
       .then((result) => {
         if (result.deletedCount === 1) {
           res.statusCode = 200;
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({ message: 'User deleted successfully' }));
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ message: "User deleted successfully" }));
         } else {
           res.statusCode = 404;
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({ error: 'User not found' }));
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ error: "User not found" }));
         }
       })
       .catch((err) => {
-        console.error('Error deleting user from MongoDB', err);
+        console.error("Error deleting user from MongoDB", err);
         res.statusCode = 500;
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ error: 'Error deleting user from MongoDB' }));
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "Error deleting user from MongoDB" }));
       });
-    
+
     return;
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
@@ -252,13 +251,10 @@ function handleRequest(req, res) {
     RegisterRoute(req, res);
     return;
   } else if (requestUrl === "/logout") {
-    res.setHeader(
-      "Set-Cookie",
-      [
-        "Logat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",
-        "Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-      ]
-    );
+    res.setHeader("Set-Cookie", [
+      "Logat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",
+      "Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",
+    ]);
     res.statusCode = 302;
     res.setHeader("Location", "/login");
     res.end();
@@ -435,7 +431,6 @@ async function deleteUser(email) {
     const result = await collection.deleteOne({ email });
 
     return result;
-    
   } catch (error) {
     console.error("Failed to delete user from MongoDB", error);
     throw error;
@@ -446,17 +441,18 @@ async function deleteUser(email) {
 
 function isAdminLoggedIn(req) {
   var cookies = cookie.parse(req.headers.cookie || "");
-  
-  if (cookies.Logat && cookies.Role === "admin") { // Assuming the admin role is stored in the "Role" cookie
+
+  if (cookies.Logat && cookies.Role === "admin") {
+    // Assuming the admin role is stored in the "Role" cookie
     return true;
   } else {
     return false;
   }
 }
 
-
 async function updateUser(email, userData) {
-  const uri = "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const uri =
+    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
   try {
     await client.connect();
@@ -466,7 +462,7 @@ async function updateUser(email, userData) {
     const collection = database.collection("users");
 
     // Check if the new password is different from the current one
-    if (userData.password && userData.password !== '') {
+    if (userData.password && userData.password !== "") {
       const user = await collection.findOne({ email });
       if (user && userData.password === user.password) {
         // New password is the same as the current one, no need to update
@@ -481,7 +477,6 @@ async function updateUser(email, userData) {
     const result = await collection.updateOne({ email }, { $set: userData });
 
     return result;
-
   } catch (error) {
     console.error("Failed to update user in MongoDB", error);
     throw error;

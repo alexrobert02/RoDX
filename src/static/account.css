@@ -1,0 +1,77 @@
+body {
+  background-color: #d2d79f;
+}
+
+.container {
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin-top: 50px;
+}
+
+.form-container {
+  margin-top: 30px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  padding: 8px;
+  width: 200px;
+}
+
+.edit-button {
+  margin-left: 10px;
+  background-color: #ccc;
+  border: none;
+  padding: 5px 10px;
+}
+
+.actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.logout-button {
+  background-color: #42855b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.delete-button i,
+.logout-button i {
+  margin-right: 5px;
+}
+.label-email {
+  color: #42855b;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Stilizarea etichetei pentru câmpul de parolă */
+.label-password {
+  color: #42855b;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
