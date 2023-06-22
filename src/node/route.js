@@ -63,7 +63,7 @@ function handleRequest(req, res) {
       res.end("Access denied");
       return;
     }
-  } else if (requestUrl === "/getData") {
+  } else if (requestUrl === "/getData" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
     const itemName = urlParams.get("itemName");
@@ -85,7 +85,7 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
-  } else if (requestUrl === "/getUser") {
+  } else if (requestUrl === "/getUser" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const email = urlParams.get("email");
     if (!email) {
@@ -106,7 +106,7 @@ function handleRequest(req, res) {
       });
     return;
 
-  } else if (requestUrl === "/getOptions") {
+  } else if (requestUrl === "/getOptions" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
 
@@ -127,7 +127,7 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
-  } else if (requestUrl === "/getCollections") {
+  } else if (requestUrl === "/getCollections" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const documentName = urlParams.get("documentName");
 
@@ -148,7 +148,7 @@ function handleRequest(req, res) {
         res.end("Error retrieving collections from MongoDB");
       });
     return;
-  } else if (requestUrl === "/getCollection") {
+  } else if (requestUrl === "/getCollection" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
 
@@ -169,7 +169,7 @@ function handleRequest(req, res) {
         res.end("Error retrieving collection from MongoDB");
       });
     return;
-  } else if (requestUrl === "/updateUser") {
+  } else if (requestUrl === "/updateUser" && req.method === "PUT") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const email = urlParams.get("email");
 
@@ -207,7 +207,7 @@ function handleRequest(req, res) {
     });
 
     return;
-  } else if (requestUrl === "/getAllUsers") {
+  } else if (requestUrl === "/getAllUsers" && req.method === "GET") {
     getUsers()
       .then((result) => {
         res.setHeader("Content-Type", "application/json");

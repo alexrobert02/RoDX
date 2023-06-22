@@ -23,42 +23,52 @@
             <p>Enter your account details</p>
           </section>
 
-                <form action="/login" method="POST" onsubmit="saveEmail()">
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="field">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" name="password" placeholder="Enter your password" required>
-                    </div>
-
-                    <input type="submit" value="Sign in">
-
-                    <div class="separator">
-                        <hr>
-                        <span>or</span>
-                        <hr>
-                    </div>
-
-                    <button type="button" onsubmit="event.preventDefault();">
-                        <a href="/register">Create an account</a>
-                    </button>
-                </form>
+          <form action="/login" method="POST" onsubmit="saveEmail()">
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
             </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            <input type="submit" value="Sign in" />
+
+            <div class="separator">
+              <hr />
+              <span>or</span>
+              <hr />
+            </div>
+
+            <button type="button" onsubmit="event.preventDefault();">
+              <a href="/register">Create an account</a>
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <script>
-        function saveEmail() {
-            var emailInput = document.getElementById('email');
-            var email = emailInput.value;
+      function saveEmail() {
+        var emailInput = document.getElementById("email");
+        var email = emailInput.value;
 
-            // Save email to local storage
-            localStorage.setItem('email', email);
-        }
+        localStorage.setItem("email", email);
+      }
     </script>
-</body>
-
+  </body>
 </html>

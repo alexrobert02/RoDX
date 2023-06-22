@@ -1,12 +1,13 @@
 function fetchUsers() {
-  fetch(`http://localhost:3000/getAllUsers`)
+  fetch(`http://localhost:3000/getAllUsers`, {
+    method: "GET",
+  })
     .then((response) => response.json())
     .then((users) => {
       var tableBody = document.querySelector("tbody");
       tableBody.innerHTML = "";
 
       if (users.length === 0) {
-        console.log("Data array is empty");
         return;
       }
 
@@ -68,7 +69,6 @@ function deleteUser(email) {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         fetchUsers();
         warningPopup.remove();
       })
@@ -139,7 +139,6 @@ function saveUserChanges(
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         fetchUsers();
         warningPopup.remove();
       })

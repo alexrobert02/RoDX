@@ -1,4 +1,3 @@
-// console.log("year: " + year.innerHTML);
 const year = document.getElementById("year");
 if (localStorage.getItem("textvalue")) {
   year.innerHTML = localStorage.getItem("textvalue");
@@ -47,12 +46,10 @@ function hideSelectDrug() {
   };
 }
 
-// Call the function when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
   hideSelectDrug();
 });
 
-// Event listener to the select-table element
 document
   .getElementById("select-table")
   .addEventListener("change", fetchDrugOptions);
@@ -60,14 +57,15 @@ document
 function fetchTableOptions() {
   const year = localStorage.getItem("textvalue");
   const documentNameWithYear = `${documentName}-${year}`;
-  console.log(documentNameWithYear);
   fetch(
-    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`
+    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`,
+    {
+      method: "GET",
+    }
   )
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
-        console.log("Collection array is empty");
         return;
       }
 
@@ -76,8 +74,8 @@ function fetchTableOptions() {
 
       for (const option of data) {
         const optionElement = document.createElement("option");
-        optionElement.value = option.trim(); // Trim whitespace from the options
-        optionElement.textContent = option.trim(); // Trim whitespace from the options
+        optionElement.value = option.trim();
+        optionElement.textContent = option.trim();
         selectTableElement.appendChild(optionElement);
       }
       fetchDrugOptions();
@@ -85,40 +83,33 @@ function fetchTableOptions() {
 }
 fetchTableOptions();
 
-// Function to fetch drug options based on selected collection
 function fetchDrugOptions() {
   const year = localStorage.getItem("textvalue");
   const selectedTable = document.getElementById("select-table").value;
   const collectionNameWithYear = `${documentName}-${year}_${selectedTable}`;
-  console.log(year);
-  console.log(selectedTable);
+
   const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
-  console.log(
-    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`
-  );
 
   fetch(
-    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`
+    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`,
+    {
+      method: "GET",
+    }
   )
     .then((response) => response.json())
     .then((data) => {
       if (data.length === 0) {
-        console.log("Data array is empty");
         return;
       }
 
       const selectDrugElement = document.getElementById("select-drug");
 
-      // Clear existing options
       selectDrugElement.innerHTML = "";
 
-      console.log("nu sunt in for");
-      // Add options based on the fetched data
       for (const option of data) {
-        console.log("sunt in for");
         const optionElement = document.createElement("option");
-        optionElement.value = option.trim(); // Trim whitespace from the options
-        optionElement.textContent = option.trim(); // Trim whitespace from the options
+        optionElement.value = option.trim();
+        optionElement.textContent = option.trim();
         selectDrugElement.appendChild(optionElement);
       }
     })
@@ -129,7 +120,6 @@ function fetchDrugOptions() {
 
 function displayImage() {
   const year = localStorage.getItem("textvalue");
-  console.log("am intrat aici");
   let selectedOption = document.getElementById("select-options").value;
   let selectedDrug = document.getElementById("select-drug").value;
   let selectedTable = document.getElementById("select-table").value;
@@ -141,21 +131,24 @@ function displayImage() {
 
   if (selectedOption === "Bar Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      {
+        method: "GET",
+      }
     )
       .then((response) => response.json())
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
-          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          const trimmedKey = key.trim();
           return (
             trimmedKey !== "_id" &&
             trimmedKey !== "name" &&
             trimmedKey.replace(/\s/g, "") !== "Total"
           );
-        }); // Extract labels from the data object
-        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+        });
+        const dataValues = labels.map((key) => data[key]);
 
-        const colors = generateRandomColors(dataValues.length); // Generate random colors
+        const colors = generateRandomColors(dataValues.length);
 
         drawCustomGrafic(dataValues, labels, colors);
       })
@@ -164,22 +157,25 @@ function displayImage() {
       });
   } else if (selectedOption === "Bubble Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      {
+        method: "GET",
+      }
     )
       .then((response) => response.json())
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
-          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          const trimmedKey = key.trim();
           return (
             trimmedKey !== "_id" &&
             trimmedKey !== "name" &&
             trimmedKey.replace(/\s/g, "") !== "Total"
           );
-        }); // Extract labels from the data object
-        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+        });
+        const dataValues = labels.map((key) => data[key]);
         const sizes = dataValues.map((value) => value / dataValues.length);
 
-        const colors = generateRandomColors(dataValues.length); // Generate random colors
+        const colors = generateRandomColors(dataValues.length);
 
         drawBubbleChart(dataValues, labels, sizes, colors);
       })
@@ -187,23 +183,25 @@ function displayImage() {
         console.error("Error fetching data:", error);
       });
   } else if (selectedOption === "Pie Chart") {
-    console.log(encodedSelectedDrug);
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      {
+        method: "GET",
+      }
     )
       .then((response) => response.json())
       .then((data) => {
         const labels = Object.keys(data).filter((key) => {
-          const trimmedKey = key.trim(); // Remove leading and trailing spaces from the key
+          const trimmedKey = key.trim();
           return (
             trimmedKey !== "_id" &&
             trimmedKey !== "name" &&
             trimmedKey.replace(/\s/g, "") !== "Total"
           );
-        }); // Extract labels from the data object
-        const dataValues = labels.map((key) => data[key]); // Extract corresponding values for the labels
+        });
+        const dataValues = labels.map((key) => data[key]);
 
-        const colors = generateRandomColors(dataValues.length); // Generate random colors
+        const colors = generateRandomColors(dataValues.length);
         const totalValue = data.Total;
         drawPieChart(dataValues, colors, totalValue, labels);
       })
@@ -212,19 +210,20 @@ function displayImage() {
       });
   } else if (selectedOption === "CSV Table") {
     fetch(
-      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`
+      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`,
+      {
+        method: "GET",
+      }
     )
       .then((response) => response.json())
       .then((data) => {
         if (data.length === 0) {
-          console.log("Data array is empty");
           return;
         }
 
         const tableElement = document.createElement("table");
         tableElement.className = "csv-table";
 
-        // Create the table headers
         const tableHeaders = Object.keys(data[0]).filter(
           (header) => header !== "_id"
         );
@@ -236,7 +235,6 @@ function displayImage() {
         }
         tableElement.appendChild(headerRow);
 
-        // Create the table rows
         for (const item of data) {
           const row = document.createElement("tr");
           for (const header of tableHeaders) {
@@ -305,7 +303,7 @@ function drawCustomGrafic(dataValues, labels, colors) {
     options: {
       plugins: {
         legend: {
-          display: false, // Ascunde legenda
+          display: false,
         },
       },
     },
@@ -340,7 +338,7 @@ function drawBubbleChart(dataValues, labels, sizes, colors) {
     options: {
       plugins: {
         legend: {
-          display: false, // Ascunde legenda
+          display: false,
         },
       },
       scales: {
@@ -408,12 +406,10 @@ function exportChartToSvg() {
   var canvas = document.getElementById("chartCanvas");
   var context = canvas.getContext("2d");
 
-  // Creează un element SVG cu dimensiunile canvas-ului
   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("width", canvas.width);
   svg.setAttribute("height", canvas.height);
 
-  // Creează un element imagine SVG
   var svgImage = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "image"
@@ -421,32 +417,24 @@ function exportChartToSvg() {
   svgImage.setAttribute("width", canvas.width);
   svgImage.setAttribute("height", canvas.height);
 
-  // Converteste imaginea canvas-ului într-un URL de imagine PNG
   var dataUrl = canvas.toDataURL("image/png");
 
-  // Setează URL-ul imaginii SVG cu URL-ul imaginii PNG
   svgImage.setAttribute("href", dataUrl);
 
-  // Adaugă imaginea SVG în elementul SVG
   svg.appendChild(svgImage);
 
-  // Creează un element <a> pentru a descărca fișierul SVG
   var link = document.createElement("a");
   var collectionNameWithYear = `${documentName}-${localStorage.getItem(
     "textvalue"
   )}_${document.getElementById("select-table").value}`;
   link.download = collectionNameWithYear + ".svg";
 
-  // Converteste elementul SVG într-un șir de caractere SVG
   var svgString = new XMLSerializer().serializeToString(svg);
 
-  // Crează un obiect Blob cu conținutul SVG
   var svgBlob = new Blob([svgString], { type: "image/svg+xml" });
 
-  // Crează un URL pentru obiectul Blob și setează href-ul link-ului
   link.href = URL.createObjectURL(svgBlob);
 
-  // Simulează un clic pe link pentru a descărca fișierul SVG
   link.click();
 }
 
