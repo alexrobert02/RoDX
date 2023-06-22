@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.5/canvg.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Statistics | RoDX</title>
@@ -11,14 +11,14 @@
       rel="icon"
       type="image/x-icon"
       href="../static/images/powerpuff_icon.png"
-    />
-    <link rel="stylesheet" href="../static/stats-styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    >
+    <link rel="stylesheet" href="../static/stats-styles.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
-    />
+    >
   </head>
 
   <body>
@@ -36,27 +36,27 @@
       <div class="info-container">
         <h2 id="title">Statistics Dashboard</h2>
         <div class="select-info">
-          <label for="select-options">Select Display Type:</label>
+          <span>Select Display Type:</span>
           <select id="select-options" class="select">
             <option value="Pie Chart">Pie Chart</option>
             <option value="Bar Chart">Bar Chart</option>
             <option value="Bubble Chart">Bubble Chart</option>
             <option value="CSV Table">CSV Table</option>
           </select>
-          <label for="select-options2">Select Item:</label>
+          <span>Select Item:</span>
           <select id="select-drug" class="select">
             <option value="TOTAL">TOTAL</option>
           </select>
           <button onclick="displayImage()">Submit</button>
         </div>
         <div class="select-info2">
-          <label for="select-options3">Select Document:</label>
+          <span>Select Document:</span>
           <select id="select-table" onchange="fetchDrugOptions()">
             <option value="Document">Document</option>
           </select>
         </div>
         <div class="export-options" id="export-options-format">
-          <label for="export-format">Export format:</label>
+          <span >Export format:</span>
           <select id="export-format">
             <option value="PNG">PNG</option>
             <option value="SVG">SVG</option>
@@ -64,7 +64,7 @@
           <button id="export-button" onclick="exportChart()">Export</button>
         </div>
         <div class="content">
-          <img id="display-image" src="#" alt="info" />
+          <img id="display-image" src="#" alt="info" >
         </div>
       </div>
     </div>
