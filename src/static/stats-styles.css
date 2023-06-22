@@ -99,6 +99,7 @@ h1 {
   background-color: #d2d79f;
 }
 
+/********************** STATISTIC  **************************/
 .content {
   display: flex;
   justify-content: center;
@@ -138,6 +139,27 @@ label {
 
 #submit {
   padding: 2px;
+}
+
+.year-ref h3 {
+  font-size: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .year-ref h3 {
+    font-size: 1.5rem;
+  }
+}
+
+#select-table {
+  max-width: 300px;
+}
+@media screen and (min-width: 768px) {
+  .year-ref {
+    transform: translateY(30%);
+  }
+  .year-ref h3 {
+    margin-top: 50px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
