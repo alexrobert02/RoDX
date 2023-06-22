@@ -1,5 +1,5 @@
 body {
-  background-color: #d2d79f;
+  background-color: #90b77d;
 }
 
 .container {
@@ -73,4 +73,11 @@ input {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+
+.error-text {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 30px;
+  color: #263a29;
 }

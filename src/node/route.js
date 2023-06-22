@@ -241,7 +241,7 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/javascript");
   } else {
-    fsPath = path.resolve(appRootPath + "/src/views/404.html");
+    fsPath = path.resolve(appRootPath + "/src/views/404page.html");
   }
 
   if (requestUrl === "/login" && req.method === "POST") {
