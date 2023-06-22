@@ -69,6 +69,7 @@ async function insertUser(email, password) {
   await collection.insertOne({
     email,
     password: hashedPassword,
+    role: "user"
   });
 
   client.close();
