@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;700;800&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/registration.css">
-</head>
+    <link rel="stylesheet" href="../static/registration.css" />
+  </head>
 
-<body>
+  <body>
     <div class="main-container">
-        <div class="form-side">
-            <div class="wrapper">
+      <div class="form-side">
+        <div class="wrapper">
+          <section class="title">
+            <h1>Sign Up</h1>
+            <p>Enter your account details</p>
+          </section>
 
-                <section class="title">
-                    <h1>Sign Up</h1>
-                    <p>Enter your account details</p>
-                </section>
-
-                <form action="/register"
-                      method="POST">
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="field">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" name="password" placeholder="Enter your password" required>
-                    </div>
-
-                    <!-- <div class="field">
-                        <label for="password">Confirm password</label>
-                        <input id="password" type="password" placeholder="Confirm your password" required>
-                    </div> -->
-
-                    <input type="submit" value="Sign Up">
-
-                    <div class="separator">
-                        <hr>
-                        <span>or</span>
-                        <hr>
-                    </div>
-
-                    <button type="button" onsubmit="event.preventDefault();">
-                      <a href="/login">Already have an account? Sign In</a> 
-                    </button>
-                </form>
+          <form action="/register" method="POST">
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
             </div>
 
-            
-        </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <input type="submit" value="Sign Up" />
 
+            <div class="separator">
+              <hr />
+              <span>or</span>
+              <hr />
+            </div>
+
+            <button type="button" onsubmit="event.preventDefault();">
+              <a href="/login">Already have an account? Sign In</a>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
     <script src="../static/index-script.js"></script>
-</body>
-
+  </body>
 </html>
-
-<!-- npm install dotenv
-npm install bcrypt
-npm install uuid -->

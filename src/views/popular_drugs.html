@@ -1,214 +1,218 @@
 <!DOCTYPE html>
 <html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drugs | RoDX</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../static/images/powerpuff_icon.png"
+    />
+    <link rel="stylesheet" href="../static/popular_drugs.css" />
+    <link rel="stylesheet" href="../static/header.css" />
+    <link rel="stylesheet" href="../static/footer.css" />
+    <link rel="stylesheet" href="../static/main-styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drugs | RoDX</title>
-  <link rel="icon" type="image/x-icon" href="../static/images/powerpuff_icon.png" />
-  <link rel="stylesheet" href="../static/popular_drugs.css" />
-  <link rel="stylesheet" href="../static/header.css" />
-  <link rel="stylesheet" href="../static/footer.css" />
-  <link rel="stylesheet" href="../static/main-styles.css" />
-</head>
-
-<body>
-
-  <header id="header" class="hide">
-    <div class="header-left">
-      <a href="/"> Acasa </a>
-    </div>
-
-    <div class="header-right">
-      <div class="statistics">
-        <a href="/yearselect">Statistici</a>
-        <ul>
-          <li>
-            <a
-              onclick="getYear(2017)"
-              href="/statisticdocs"
-              class="year-container"
-              >2017</a
-            > 
-          </li>
-          <li>
-            <a
-              onclick="getYear(2018)"
-              href="/statisticdocs"
-              class="year-container"
-              >2018</a
-            >
-          </li>
-          <li>
-            <a
-              onclick="getYear(2019)"
-              href="/statisticdocs"
-              class="year-container"
-              >2019</a
-            >
-          </li>
-          <li>
-            <a
-              onclick="getYear(2020)"
-              href="/statisticdocs"
-              class="year-container"
-              >2020</a
-            >
-          </li>
-          <li>
-            <a
-              onclick="getYear(2021)"
-              href="/statisticdocs"
-              class="year-container"
-              >2021</a
-            >
-          </li>
-          <li>
-            <a
-              onclick="getYear(2022)"
-              href="/statisticdocs"
-              class="year-container"
-              >2022</a
-            >
-          </li>
-        </ul>
-      </div>
-      <a href="/druglist">Droguri</a>
-      <a href="/help">Ajutor</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="popular-drugs-description">
-      <h1>Droguri populare</h1>
-      <p>
-        Următoarea declarație oferă o introducere la o listă de medicamente și
-        efectele lor asociate asupra corpului uman. Această listă poate fi
-        util în înțelegerea impactului potențial pe care anumite medicamente
-        poate avea asupra sănătăţii fizice şi psihice. Medicamentele incluse
-        în lista sunt cele care se folosesc frecvent, fie pe bază de rețetă,
-        fie fără prescripție medicală și poate avea efecte semnificative
-        asupra diferitelor aspecte a functiilor organismului. Prin revizuirea
-        acestor informații, persoanele fizice poate deveni mai informat cu
-        privire la beneficiile și riscurile potențiale ale medicamentele pe
-        care le iau, precum și posibilele efecte secundare care pot apărea.
-      </p>
-    </section>
-
-    <section>
-      <div class="popular-drugs-container">
-        <div class="drugs-info">  
-          <h2>Cocaina</h2>
-          <p>
-            Cocaina este un medicament stimulant care se face din frunzele de
-            coca plantă. De obicei este pufnit, injectat sau fumat și poate
-            provoca efecte pe termen scurt, cum ar fi creșterea ritmului cardiac
-            și a tensiunii arteriale, precum și efectele pe termen lung asupra
-            creierului și a sistemului cardiovascular.
-          </p>
-
-        </div>
-        <img src="../static/images/cocaine.png" alt="cocaine">
+  <body>
+    <header id="header" class="hide">
+      <div class="header-left">
+        <a href="/"> Acasa </a>
       </div>
 
-      <div class="popular-drugs-container">
-        <div class="drugs-info">
-          <h2>Marijuana</h2>
-          <p>
-            Marijuana este un drog psihoactiv produs din planta de canabis. Este
-            utilizat în scopuri medicinale și recreative și poate fi fumat,
-            vaporizat sau ingerat. Marijuana poate avea pe termen scurt și pe
-            termen lung efecte asupra memoriei, coordonării și sănătății
-            mintale.
-          </p>
+      <div class="header-right">
+        <div class="statistics">
+          <a href="/yearselect">Statistici</a>
+          <ul>
+            <li>
+              <a
+                onclick="getYear(2017)"
+                href="/statisticdocs"
+                class="year-container"
+                >2017</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2018)"
+                href="/statisticdocs"
+                class="year-container"
+                >2018</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2019)"
+                href="/statisticdocs"
+                class="year-container"
+                >2019</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2020)"
+                href="/statisticdocs"
+                class="year-container"
+                >2020</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2021)"
+                href="/statisticdocs"
+                class="year-container"
+                >2021</a
+              >
+            </li>
+            <li>
+              <a
+                onclick="getYear(2022)"
+                href="/statisticdocs"
+                class="year-container"
+                >2022</a
+              >
+            </li>
+          </ul>
         </div>
-        <img src="../static/images/marijuana.png" alt="marijuana" />
+        <a href="/druglist">Droguri</a>
+        <a href="/help">Ajutor</a>
       </div>
+    </header>
 
-      <div class="popular-drugs-container">
-        <div class="drugs-info">
-          <h2>Ecstasy</h2>
-          <p>
-            Ecstasy, cunoscut și sub numele de MDMA, este un drog de sinteză
-            care este de obicei luate sub formă de pastile. Poate provoca efecte
-            pe termen scurt, cum ar fi energie și empatie crescute, precum și
-            efecte pe termen lung asupra creierul și starea de spirit.
-          </p>
+    <main>
+      <section class="popular-drugs-description">
+        <h1>Droguri populare</h1>
+        <p>
+          Următoarea declarație oferă o introducere la o listă de medicamente și
+          efectele lor asociate asupra corpului uman. Această listă poate fi
+          util în înțelegerea impactului potențial pe care anumite medicamente
+          poate avea asupra sănătăţii fizice şi psihice. Medicamentele incluse
+          în lista sunt cele care se folosesc frecvent, fie pe bază de rețetă,
+          fie fără prescripție medicală și poate avea efecte semnificative
+          asupra diferitelor aspecte a functiilor organismului. Prin revizuirea
+          acestor informații, persoanele fizice poate deveni mai informat cu
+          privire la beneficiile și riscurile potențiale ale medicamentele pe
+          care le iau, precum și posibilele efecte secundare care pot apărea.
+        </p>
+      </section>
+
+      <section>
+        <div class="popular-drugs-container">
+          <div class="drugs-info">
+            <h2>Cocaina</h2>
+            <p>
+              Cocaina este un medicament stimulant care se face din frunzele de
+              coca plantă. De obicei este pufnit, injectat sau fumat și poate
+              provoca efecte pe termen scurt, cum ar fi creșterea ritmului
+              cardiac și a tensiunii arteriale, precum și efectele pe termen
+              lung asupra creierului și a sistemului cardiovascular.
+            </p>
+          </div>
+          <img src="../static/images/cocaine.png" alt="cocaine" />
         </div>
+
+        <div class="popular-drugs-container">
+          <div class="drugs-info">
+            <h2>Marijuana</h2>
+            <p>
+              Marijuana este un drog psihoactiv produs din planta de canabis.
+              Este utilizat în scopuri medicinale și recreative și poate fi
+              fumat, vaporizat sau ingerat. Marijuana poate avea pe termen scurt
+              și pe termen lung efecte asupra memoriei, coordonării și sănătății
+              mintale.
+            </p>
+          </div>
+          <img src="../static/images/marijuana.png" alt="marijuana" />
+        </div>
+
+        <div class="popular-drugs-container">
+          <div class="drugs-info">
+            <h2>Ecstasy</h2>
+            <p>
+              Ecstasy, cunoscut și sub numele de MDMA, este un drog de sinteză
+              care este de obicei luate sub formă de pastile. Poate provoca
+              efecte pe termen scurt, cum ar fi energie și empatie crescute,
+              precum și efecte pe termen lung asupra creierul și starea de
+              spirit.
+            </p>
+          </div>
           <img src="../static/images/ecstasy.png" alt="ecstasy" />
-      </div>
-      
-     
-      <div class="popular-drugs-container">
-        <div class="drugs-info">
-          <h2>Heroina</h2>
-          <p>
-            Heroina este un drog opioid care creează dependență, produs din
-            morfină, care este derivat din planta de mac de opiu. De obicei este
-            injectat, pufnit, sau fumat și poate provoca efecte pe termen scurt,
-            cum ar fi o grabă de euforie, precum și efecte pe termen lung asupra
-            creierului, inimii și alte organe.
-          </p>
         </div>
-        <img src="../static/images/heroin.png" alt="heroin" />
-      </div>
 
-      <div class="popular-drugs-container">
-        <div class="drugs-info">
-          <h2>Metamfetamina</h2>
-          <p>
-            Metamfetamina este un stimulent puternic care poate fi pufnit, fumat
-            sau injectat. Poate provoca efecte pe termen scurt, cum ar fi
-            energie și vigilență crescute, precum și efecte pe termen lung
-            asupra creierul, inima și alte organe.
-          </p>
+        <div class="popular-drugs-container">
+          <div class="drugs-info">
+            <h2>Heroina</h2>
+            <p>
+              Heroina este un drog opioid care creează dependență, produs din
+              morfină, care este derivat din planta de mac de opiu. De obicei
+              este injectat, pufnit, sau fumat și poate provoca efecte pe termen
+              scurt, cum ar fi o grabă de euforie, precum și efecte pe termen
+              lung asupra creierului, inimii și alte organe.
+            </p>
+          </div>
+          <img src="../static/images/heroin.png" alt="heroin" />
         </div>
-          <img src="../static/images/methamphetamine.png" alt="methamphetamine" />
-      </div>
-      
-    </section>
-  </main>
-  <footer>
-    <p>Termeni și condiții</p>
-    <br />
-    Accesul la instrumentul Web de analiză și vizualizare la consumul de
-    droguri este gratuit și nu necesită crearea unui cont.
-    <br />
-    Datele statistice utilizate în acest instrument Web sunt obținute din
-    surse publice, precum Institutul Național de Statistică, Autoritatea
-    Națională pentru Consum și Controlul Drogurilor și alte organizații
-    oficiale.
-    <br />
-    Utilizatorii trebuie să acorde o atenție deosebită interpretării corecte a
-    datelor statistice prezentate, deoarece acestea pot varia în funcție de
-    metodologia și sursele utilizate.
-    <br />
-    Este interzisă utilizarea instrumentului Web în scopuri ilegale sau pentru
-    a încuraja consumul de droguri.
-    <br />
-    Creatorii acestui instrument Web nu își asumă nicio responsabilitate
-    pentru utilizarea incorectă a datelor sau pentru eventualele prejudicii
-    cauzate de utilizarea acestuia.
-    <br />
-    Utilizatorii sunt de acord să nu copieze, distribuie sau modifice datele
-    sau informațiile prezentate în acest instrument Web fără permisiunea
-    prealabilă a creatorilor.
-    <br />
-    Datele și informațiile prezentate în acest instrument Web pot fi
-    actualizate periodic pentru a reflecta situația actuală a consumului de
-    droguri în România.
-    <br />
-    Utilizatorii sunt de acord să folosească acest instrument Web și
-    informațiile prezentate într-un mod responsabil și etic.
-    <p>
-      Copyright © 2023
-      <span class="footer-span">|</span>
-      <a href="mailto:contact@situatia-drogurilor.ro">contact@situatia-drogurilor.ro</a>
-    </p>
-  </footer>
-  <script src="../static/index-script.js"></script>
-  <script src="../static/header-display.js"></script>
-</body>
 
+        <div class="popular-drugs-container">
+          <div class="drugs-info">
+            <h2>Metamfetamina</h2>
+            <p>
+              Metamfetamina este un stimulent puternic care poate fi pufnit,
+              fumat sau injectat. Poate provoca efecte pe termen scurt, cum ar
+              fi energie și vigilență crescute, precum și efecte pe termen lung
+              asupra creierul, inima și alte organe.
+            </p>
+          </div>
+          <img
+            src="../static/images/methamphetamine.png"
+            alt="methamphetamine"
+          />
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Termeni și condiții</p>
+      <br />
+      Accesul la instrumentul Web de analiză și vizualizare la consumul de
+      droguri este gratuit și nu necesită crearea unui cont.
+      <br />
+      Datele statistice utilizate în acest instrument Web sunt obținute din
+      surse publice, precum Institutul Național de Statistică, Autoritatea
+      Națională pentru Consum și Controlul Drogurilor și alte organizații
+      oficiale.
+      <br />
+      Utilizatorii trebuie să acorde o atenție deosebită interpretării corecte a
+      datelor statistice prezentate, deoarece acestea pot varia în funcție de
+      metodologia și sursele utilizate.
+      <br />
+      Este interzisă utilizarea instrumentului Web în scopuri ilegale sau pentru
+      a încuraja consumul de droguri.
+      <br />
+      Creatorii acestui instrument Web nu își asumă nicio responsabilitate
+      pentru utilizarea incorectă a datelor sau pentru eventualele prejudicii
+      cauzate de utilizarea acestuia.
+      <br />
+      Utilizatorii sunt de acord să nu copieze, distribuie sau modifice datele
+      sau informațiile prezentate în acest instrument Web fără permisiunea
+      prealabilă a creatorilor.
+      <br />
+      Datele și informațiile prezentate în acest instrument Web pot fi
+      actualizate periodic pentru a reflecta situația actuală a consumului de
+      droguri în România.
+      <br />
+      Utilizatorii sunt de acord să folosească acest instrument Web și
+      informațiile prezentate într-un mod responsabil și etic.
+      <p>
+        Copyright © 2023
+        <span class="footer-span">|</span>
+        <a href="mailto:contact@situatia-drogurilor.ro"
+          >contact@situatia-drogurilor.ro</a
+        >
+      </p>
+    </footer>
+    <script src="../static/index-script.js"></script>
+    <script src="../static/header-display.js"></script>
+  </body>
 </html>
