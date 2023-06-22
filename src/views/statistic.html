@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.5/canvg.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Statistics | RoDX</title>
     <link
@@ -54,33 +54,23 @@
           <select id="select-table" onchange="fetchDrugOptions()">
             <option value="Document">Document</option>
           </select>
-          <button id="export-button" onclick="exportChartToPng()">Export as PNG</button>
+          <!-- <button id="export-button" onclick="exportChartToSvg()">
+            Export as SVG
+          </button> -->
+        </div>
+        <div class="export-options" id="export-options-format">
+          <label for="export-format">Export format:</label>
+          <select id="export-format">
+            <option value="PNG">PNG</option>
+            <option value="SVG">SVG</option>
+          </select>
+          <button id="export-button" onclick="exportChart()">Export</button>
         </div>
         <div class="content">
           <img id="display-image" src="#" alt="info" />
-          <canvas id="chartCanvas"></canvas>
         </div>
       </div>
     </div>
     <script src="../static/stats-script.js"></script>
-    <script>
-      // function exportChartToSVG() {
-      //   let context = document.getElementById("chartCanvas");
-      //   context.width = 400;
-      //   context.height = 400;
-
-      //   // create the chart
-      //   let canvas = document.getElementById("chartCanvas");
-
-      //   // Get the chart instance
-      //   let chart = Chart.instances[0];
-
-      //   // and generate the PNG and SVG links!
-      //   // (the code that does this is in the 'libs' folder > export.js)
-
-      //   // arguments: filename, link text, the chart, and its settings
-      //   createSvgLink("chart.svg", "SVG", chart, chart.options);
-      // }
-    </script>
   </body>
 </html>

@@ -29,7 +29,9 @@ if (
 function hideSelectDrug() {
   const selectOptions = document.getElementById("select-options");
   const selectDrug = document.getElementById("select-drug");
-  const selectDrugLabel = document.querySelector("label[for='select-options2']");
+  const selectDrugLabel = document.querySelector(
+    "label[for='select-options2']"
+  );
   const exportButton = document.getElementById("export-button");
 
   selectOptions.onchange = function () {
@@ -49,7 +51,6 @@ function hideSelectDrug() {
 document.addEventListener("DOMContentLoaded", function () {
   hideSelectDrug();
 });
-
 
 // Event listener to the select-table element
 document
@@ -402,3 +403,58 @@ function exportChartToPng() {
 }
 
 /***********************export to svg */
+
+function exportChartToSvg() {
+  var canvas = document.getElementById("chartCanvas");
+  var context = canvas.getContext("2d");
+
+  // Creează un element SVG cu dimensiunile canvas-ului
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", canvas.width);
+  svg.setAttribute("height", canvas.height);
+
+  // Creează un element imagine SVG
+  var svgImage = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "image"
+  );
+  svgImage.setAttribute("width", canvas.width);
+  svgImage.setAttribute("height", canvas.height);
+
+  // Converteste imaginea canvas-ului într-un URL de imagine PNG
+  var dataUrl = canvas.toDataURL("image/png");
+
+  // Setează URL-ul imaginii SVG cu URL-ul imaginii PNG
+  svgImage.setAttribute("href", dataUrl);
+
+  // Adaugă imaginea SVG în elementul SVG
+  svg.appendChild(svgImage);
+
+  // Creează un element <a> pentru a descărca fișierul SVG
+  var link = document.createElement("a");
+  var collectionNameWithYear = `${documentName}-${localStorage.getItem(
+    "textvalue"
+  )}_${document.getElementById("select-table").value}`;
+  link.download = collectionNameWithYear + ".svg";
+
+  // Converteste elementul SVG într-un șir de caractere SVG
+  var svgString = new XMLSerializer().serializeToString(svg);
+
+  // Crează un obiect Blob cu conținutul SVG
+  var svgBlob = new Blob([svgString], { type: "image/svg+xml" });
+
+  // Crează un URL pentru obiectul Blob și setează href-ul link-ului
+  link.href = URL.createObjectURL(svgBlob);
+
+  // Simulează un clic pe link pentru a descărca fișierul SVG
+  link.click();
+}
+
+function exportChart() {
+  let selectedOption = document.getElementById("export-format").value;
+  if (selectedOption === "PNG") {
+    exportChartToPng();
+  } else if (selectedOption === "SVG") {
+    exportChartToSvg();
+  }
+}

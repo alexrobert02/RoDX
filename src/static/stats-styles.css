@@ -3,18 +3,16 @@
   padding: 0;
 }
 
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
 body {
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
 }
 
-header {
-  position: static;
-}
-
-header ul {
-  display: none;
-}
 a {
   text-decoration: none;
   color: #000000;
@@ -201,4 +199,8 @@ label {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: left;
+}
+.export-options {
+  width: 100%;
+  text-align: center;
 }
