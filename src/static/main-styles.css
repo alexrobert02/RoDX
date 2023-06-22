@@ -2,13 +2,13 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
 }
 
 body {
   width: 100vw;
   min-height: 100vh;
-  background-color: #C4D6C7;
+  background-color: #c4d6c7;
   overflow-x: hidden;
 }
 
@@ -37,13 +37,11 @@ body {
   font-size: 4em;
   font-weight: bold;
   text-align: center;
-  /* margin-top: -150px; */
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 30px #fff,
     0 0 40px #90b77d, 0 0 50px #90b77d, 0 0 60px #90b77d, 0 0 30px #fff,
     0 0 30px #fff, 0 0 70px #d2d79f, 0 0 80px #d2d79f, 0 0 90px #d2d79f,
     0 0 30px #fff;
 }
-
 
 .main-button {
   font-family: Arial, sans-serif;
@@ -59,8 +57,8 @@ body {
   box-shadow: 0 6px 10px 0 rgba(245, 242, 242, 0.612);
   transition: all 0.2s ease-in-out;
   position: fixed;
-    bottom: 0;
-    right: 0;
+  bottom: 0;
+  right: 0;
 }
 .main-button:hover {
   transform: translateY(-5px);

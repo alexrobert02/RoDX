@@ -1,6 +1,6 @@
 function fetchUsers() {
   fetch(`http://localhost:3000/getAllUsers`, {
-    method: 'GET'
+    method: "GET",
   })
     .then((response) => response.json())
     .then((users) => {
@@ -8,7 +8,6 @@ function fetchUsers() {
       tableBody.innerHTML = "";
 
       if (users.length === 0) {
-        console.log("Data array is empty");
         return;
       }
 
@@ -70,7 +69,6 @@ function deleteUser(email) {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         fetchUsers();
         warningPopup.remove();
       })
@@ -141,7 +139,6 @@ function saveUserChanges(
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         fetchUsers();
         warningPopup.remove();
       })
