@@ -56,15 +56,33 @@ function fetchUsers() {
   });
 
   function deleteUser(email) {
-    fetch(`http://localhost:3000/deleteUser?email=${email}`, {
-      method: 'DELETE'
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-          fetchUsers();
+    // Display a confirmation dialog
+    var confirmed = confirm("Are you sure you want to delete this user?");
+  
+    if (confirmed) {
+      // User confirmed deletion
+      // Show the cool warning popup
+      var warningPopup = document.createElement('div');
+      warningPopup.classList.add('warning-popup');
+      warningPopup.textContent = 'Deleting user...';
+  
+      document.body.appendChild(warningPopup);
+  
+      fetch(`http://localhost:3000/deleteUser?email=${email}`, {
+        method: 'DELETE'
       })
-      .catch((error) => {
-        console.error("Error deleting user:", error);
-      });
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          fetchUsers();
+          // Remove the warning popup
+          warningPopup.remove();
+        })
+        .catch((error) => {
+          console.error("Error deleting user:", error);
+          // Remove the warning popup
+          warningPopup.remove();
+        });
+    }
   }
+  

@@ -36,5 +36,19 @@ tr:nth-child(even) {
 }
 
 .icon-space {
-  margin-left: 10px; /* Adjust the value as per your preference */
+  margin-left: 10px;
+}
+
+.warning-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Roboto Flex', sans-serif;
+  font-weight: 800;
+  z-index: 9999;
 }
