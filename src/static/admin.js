@@ -18,10 +18,13 @@ function fetchUsers() {
         passwordCell.textContent = user.password;
         var actionsCell = document.createElement('td');
       
-        // Edit icon
+        // Edit button
         var editIcon = document.createElement('i');
         editIcon.classList.add('fas', 'fa-edit');
         editIcon.setAttribute('title', 'Edit');
+        editIcon.addEventListener('click', function () {
+          editUser(user, emailCell, passwordCell, editIcon);
+        });
         actionsCell.appendChild(editIcon);
 
         // Add space using CSS class
@@ -85,4 +88,78 @@ function fetchUsers() {
         });
     }
   }
-  
+
+  function editUser(user, emailCell, passwordCell, editIcon) {
+    // Create input fields for email and password
+    var emailInput = document.createElement('input');
+    emailInput.type = 'text';
+    emailInput.value = user.email;
+    
+    var passwordInput = document.createElement('input');
+    passwordInput.type = 'text';
+    passwordInput.value = user.password;
+    
+    // Replace email and password cells with input fields
+    emailCell.textContent = '';
+    emailCell.appendChild(emailInput);
+    
+    passwordCell.textContent = '';
+    passwordCell.appendChild(passwordInput);
+    
+    // Update the edit button to save changes
+    editIcon.classList.remove('fa-edit');
+    editIcon.classList.add('fa-check');
+    editIcon.setAttribute('title', 'Save');
+    editIcon.removeEventListener('click', editUser);
+    editIcon.addEventListener('click', function () {
+        saveUserChanges(user, emailInput.value, passwordInput.value, emailCell, passwordCell, editIcon);
+    });
+    }
+
+  function saveUserChanges(user, newEmail, newPassword, emailCell, passwordCell, editIcon) {
+    var confirmed = confirm("Are you sure you want to save the changes?");
+    
+    if (confirmed) {
+      // Show the cool warning popup
+      var warningPopup = document.createElement('div');
+      warningPopup.classList.add('warning-popup');
+      warningPopup.textContent = 'Saving changes...';
+    
+      document.body.appendChild(warningPopup);
+    
+      // Send the updated data to the server
+      fetch(`http://localhost:3000/updateUser?email=${user.email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: newEmail,
+          password: newPassword
+        })
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          fetchUsers();
+          // Remove the warning popup
+          warningPopup.remove();
+        })
+        .catch((error) => {
+          console.error("Error updating user:", error);
+          // Remove the warning popup
+          warningPopup.remove();
+        });
+      
+      // Restore the original cells' content and edit button
+      emailCell.textContent = user.email;
+      passwordCell.textContent = user.password;
+      editIcon.classList.remove('fa-check');
+      editIcon.classList.add('fa-edit');
+      editIcon.setAttribute('title', 'Edit');
+      editIcon.removeEventListener('click', saveUserChanges);
+      editIcon.addEventListener('click', function () {
+        editUser(user, emailCell, passwordCell, editIcon);
+      });
+    }
+  }

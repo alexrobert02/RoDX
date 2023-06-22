@@ -6,6 +6,7 @@ const { MongoClient } = require("mongodb");
 var RegisterRoute = require("./registerDB.js");
 var LoginRoute = require("./loginDB.js");
 var cookie = require("cookie");
+const bcrypt = require("bcrypt");
 
 function handleRequest(req, res) {
   var requestUrl = url.parse(req.url).pathname;
@@ -146,6 +147,45 @@ function handleRequest(req, res) {
       });
     return;
 
+  } else if (requestUrl === "/updateUser") {
+    const urlParams = new URLSearchParams(url.parse(req.url).query);
+    const email = urlParams.get("email");
+  
+    if (!email) {
+      res.statusCode = 400;
+      res.end("Missing email");
+      return;
+    }
+
+    // Parse the request body
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk.toString();
+    });
+
+    req.on('end', () => {
+      try {
+        const userData = JSON.parse(body);
+  
+        // Update the user data in the database (assuming you have a function called `updateUser`)
+        updateUser(email, userData)
+          .then((result) => {
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 200;
+            res.end(JSON.stringify(result));
+          })
+          .catch((err) => {
+            res.statusCode = 500;
+            res.end("Error updating user in the database");
+          });
+      } catch (error) {
+        res.statusCode = 400;
+        res.end("Invalid JSON payload");
+      }
+    });
+
+    return;
+  
   } else if (requestUrl === "/getAllUsers") {
     getUsers()
       .then((result) => {
@@ -415,3 +455,37 @@ function isAdminLoggedIn(req) {
 }
 
 
+async function updateUser(email, userData) {
+  const uri = "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri);
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+
+    const database = client.db("User");
+    const collection = database.collection("users");
+
+    // Check if the new password is different from the current one
+    if (userData.password && userData.password !== '') {
+      const user = await collection.findOne({ email });
+      if (user && userData.password === user.password) {
+        // New password is the same as the current one, no need to update
+        delete userData.password; // Remove the password field from the update data
+      } else {
+        // Hash the new password
+        const hashedPassword = bcrypt.hashSync(userData.password, 10);
+        userData.password = hashedPassword;
+      }
+    }
+
+    const result = await collection.updateOne({ email }, { $set: userData });
+
+    return result;
+
+  } catch (error) {
+    console.error("Failed to update user in MongoDB", error);
+    throw error;
+  } finally {
+    await client.close();
+  }
+}
