@@ -34,3 +34,7 @@ th {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+.icon-space {
+  margin-left: 10px; /* Adjust the value as per your preference */
+}
