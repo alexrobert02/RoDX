@@ -26,7 +26,10 @@ function handleRequest(req, res) {
     return;
   }
 
-  if ((requestUrl === "/login" || requestUrl === "/register") && isLoggedIn(req)) {
+  if (
+    (requestUrl === "/login" || requestUrl === "/register") &&
+    isLoggedIn(req)
+  ) {
     res.statusCode = 302;
     res.setHeader("Location", "/");
     res.end();
@@ -49,6 +52,8 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/login.html");
   } else if (requestUrl === "/register") {
     fsPath = path.resolve(appRootPath + "/src/views/register.html");
+  } else if (requestUrl === "/admin") {
+    fsPath = path.resolve(appRootPath + "/src/views/admin.html");
   } else if (requestUrl === "/getData") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
@@ -92,7 +97,6 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
-  
   } else if (requestUrl === "/getCollections") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const documentName = urlParams.get("documentName");
@@ -135,7 +139,6 @@ function handleRequest(req, res) {
         res.end("Error retrieving collection from MongoDB");
       });
     return;
-
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
     res.setHeader("Content-Type", "text/css");
@@ -151,7 +154,6 @@ function handleRequest(req, res) {
   } else {
     fsPath = path.resolve(appRootPath + "/src/views/404.html");
   }
-
 
   if (requestUrl === "/login" && req.method === "POST") {
     LoginRoute(req, res);
@@ -170,7 +172,6 @@ function handleRequest(req, res) {
     return;
   }
 
-
   fs.stat(fsPath, function (err, stat) {
     if (err) {
       console.log("ERROR :(((: " + err);
@@ -183,7 +184,6 @@ function handleRequest(req, res) {
   });
 }
 
-
 async function getCollections(documentName) {
   const uri =
     "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
@@ -195,14 +195,13 @@ async function getCollections(documentName) {
 
     const database = client.db("RoDX");
     const collections = await database.listCollections().toArray();
-    
+
     const filteredCollections = collections
-      .map(collection => collection.name)
-      .filter(name => name.startsWith(decodedDocumentName + "_"))
-      .map(name => name.split('_')[1]);
+      .map((collection) => collection.name)
+      .filter((name) => name.startsWith(decodedDocumentName + "_"))
+      .map((name) => name.split("_")[1]);
 
     return filteredCollections;
-
   } catch (error) {
     console.error("Failed to retrieve collections from MongoDB", error);
     throw error;
@@ -210,7 +209,6 @@ async function getCollections(documentName) {
     await client.close();
   }
 }
-
 
 async function getOptions(collectionName) {
   const uri =
@@ -227,7 +225,6 @@ async function getOptions(collectionName) {
     const options = await collection.distinct("name");
 
     return options;
-
   } catch (error) {
     console.error("Failed to retrieve options from MongoDB", error);
     throw error;
@@ -251,11 +248,14 @@ async function getData(collectionName, itemName) {
     const database = client.db("RoDX");
     const collection = database.collection(decodedCollectionName);
 
-    const regexItemName = decodedItemName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    const regexItemName = decodedItemName.replace(
+      /[-[\]{}()*+?.,\\^$|#\s]/g,
+      "\\$&"
+    );
     const regexQuery = new RegExp(regexItemName);
 
     const result = await collection.findOne({
-      name: regexQuery
+      name: regexQuery,
     });
     return result;
 
@@ -295,7 +295,6 @@ function isLoggedIn(req) {
   var cookies = cookie.parse(req.headers.cookie || "");
 
   if (cookies.Logat) {
-
     return true;
   } else {
     return false;
