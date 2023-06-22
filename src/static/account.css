@@ -1,5 +1,5 @@
 body {
-  background-color: #90b77d;
+  background-color: #d2d79f;
 }
 
 .container {
@@ -90,7 +90,7 @@ input {
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   font-weight: 800;
   z-index: 9999;
 }
