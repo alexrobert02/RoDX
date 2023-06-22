@@ -6,13 +6,11 @@
 body {
   width: 100vw;
   min-height: 100vh;
-  /* overflow: hidden; */
 }
 @media screen and (min-width: 768px) {
   body {
     overflow: hidden;
   }
-  
 }
 
 a {
@@ -32,7 +30,6 @@ a {
   width: 25%;
   background-color: #483838;
   margin: 0 auto;
-  /* padding: 50px; */
 }
 @media screen and (min-width: 768px) {
   .year-container h1 {
@@ -58,7 +55,6 @@ a {
 
 .year-ref {
   text-align: center;
-  /*top: 40%;*/
   margin-top: middle;
   font-size: 3.5rem;
   color: #90b77d;
@@ -97,7 +93,6 @@ h1 {
   width: 75%;
   height: 100vh;
   background-color: #d2d79f;
-  /* font-weight: 00; */
 }
 @media screen and (max-width: 767px) {
   .info-container {
@@ -128,7 +123,8 @@ img {
   height: auto;
 }
 
-select, .info-container button {
+select,
+.info-container button {
   padding: 5px;
 }
 
@@ -149,7 +145,6 @@ select, .info-container button {
   width: 100%;
   text-align: center;
 }
-
 
 label {
   font-size: 1.2rem;
@@ -198,8 +193,6 @@ label {
     width: 100%;
     height: 20%;
   }
-
-  
 }
 
 .bullet-list {
@@ -216,7 +209,7 @@ label {
 }
 
 .bullet-list li:before {
-  content: "➤"; /* Modific simbolul după preferință */
+  content: "➤";
   color: #42855b;
   font-size: 20px;
   margin-right: 10px;
@@ -232,8 +225,6 @@ label {
 }
 
 /*******************TABLE***********************/
-
-
 
 .csv-table {
   width: 100%;

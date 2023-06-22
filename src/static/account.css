@@ -67,7 +67,6 @@ input {
   margin-bottom: 5px;
 }
 
-/* Stilizarea etichetei pentru câmpul de parolă */
 .label-password {
   color: #42855b;
   font-weight: bold;
@@ -79,5 +78,5 @@ input {
   font-size: 28px;
   font-weight: bold;
   margin-top: 30px;
-  color: #263a29;
+  color: #d2d79f;
 }
