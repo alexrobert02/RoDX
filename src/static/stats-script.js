@@ -62,7 +62,9 @@ function fetchTableOptions() {
   const documentNameWithYear = `${documentName}-${year}`;
   console.log(documentNameWithYear);
   fetch(
-    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`
+    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`, {
+      method: 'GET'
+    }
   )
     .then((response) => response.json())
     .then((data) => {
@@ -98,7 +100,9 @@ function fetchDrugOptions() {
   );
 
   fetch(
-    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`
+    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`, {
+      method: 'GET'
+    }
   )
     .then((response) => response.json())
     .then((data) => {
@@ -141,7 +145,9 @@ function displayImage() {
 
   if (selectedOption === "Bar Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`, {
+        method: 'GET'
+      }
     )
       .then((response) => response.json())
       .then((data) => {
@@ -164,7 +170,9 @@ function displayImage() {
       });
   } else if (selectedOption === "Bubble Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`, {
+        method: 'GET'
+      }
     )
       .then((response) => response.json())
       .then((data) => {
@@ -189,7 +197,9 @@ function displayImage() {
   } else if (selectedOption === "Pie Chart") {
     console.log(encodedSelectedDrug);
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`
+      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`, {
+        method: 'GET'
+      }
     )
       .then((response) => response.json())
       .then((data) => {
@@ -212,7 +222,9 @@ function displayImage() {
       });
   } else if (selectedOption === "CSV Table") {
     fetch(
-      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`
+      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`, {
+        method: 'GET'
+      }
     )
       .then((response) => response.json())
       .then((data) => {

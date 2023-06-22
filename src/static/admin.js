@@ -1,5 +1,7 @@
 function fetchUsers() {
-  fetch(`http://localhost:3000/getAllUsers`)
+  fetch(`http://localhost:3000/getAllUsers`, {
+    method: 'GET'
+  })
     .then((response) => response.json())
     .then((users) => {
       var tableBody = document.querySelector("tbody");
