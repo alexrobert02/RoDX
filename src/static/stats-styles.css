@@ -3,16 +3,18 @@
   padding: 0;
 }
 
-html {
-  width: 100vw;
-  height: 100vh;
-}
-
 body {
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
+header {
+  position: static;
+}
+
+header ul {
+  display: none;
+}
 a {
   text-decoration: none;
   color: #000000;
