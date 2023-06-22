@@ -20,7 +20,9 @@ const email = localStorage.getItem("email");
 
 // Function to fetch and display user data on the edit page
 function fetchUser() {
-  fetch(`http://localhost:3000/getUser?email=${email}`)
+  fetch(`http://localhost:3000/getUser?email=${email}`, {
+    method: 'GET'
+  })
     .then((response) => response.json())
     .then((user) => {
       // Display user data on the edit page
