@@ -8,7 +8,7 @@ header {
   align-items: center;
   height: 100px;
   background-color: #d2d79f;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .show {
@@ -43,7 +43,6 @@ a {
   }
 }
 
-
 .statistics ul {
   display: none;
   position: absolute;
@@ -55,7 +54,6 @@ a {
   list-style-type: none;
   margin-left: -10px;
   color: #2e4f4f;
-  
 }
 
 .header-right a:hover + ul,
@@ -63,6 +61,8 @@ a {
   display: block;
   text-align: center;
   padding: 15px;
-  
 }
 
+.account-navbar {
+  width: 30px;
+}
