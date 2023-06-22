@@ -18,24 +18,6 @@
       rel="stylesheet"
     />
   </head>
-  <script>
-    function hideOptionsIfNot2022() {
-      console.log("aici se modifica lista");
-      const year = parseInt(localStorage.getItem("textvalue"));
-      const bulletList = document.getElementById("bullet-list");
-      const listItems1 = document.getElementById("option1-2022");
-      const listItems2 = document.getElementById("option2-2022");
-      const listItems3 = document.getElementById("option3-2022");
-      const listItems4 = document.getElementById("option4-2022");
-      if (year !== 2022) {
-        listItems1.style.display = "none";
-        listItems2.style.display = "none";
-        listItems3.style.display = "none";
-        listItems4.style.display = "none";
-      }
-    }
-    window.addEventListener("DOMContentLoaded", hideOptionsIfNot2022);
-  </script>
   <body>
     <div class="container">
       <div class="year-container">
@@ -67,35 +49,6 @@
               href="/statistic"
               onclick="saveOption('Urgenţe medicale datorate consumului de droguri')"
               >Urgenţe medicale datorate consumului de droguri</a
-            >
-          </li>
-          <li id="option1-2022">
-            <a
-              href="/statistic"
-              onclick="saveOption('Situația confiscărilor de droguri')"
-              >Situația confiscărilor de droguri</a
-            >
-          </li>
-          <li id="option2-2022">
-            <a
-              href="/statistic"
-              onclick="saveOption('Infracționalitatea la regimul drogurilor')"
-              >Infracționalitatea la regimul drogurilor</a
-            >
-          </li>
-          <li id="option3-2022">
-            <a
-              href="/statistic"
-              onclick="saveOption('Precursorii (substanțe clasificate) și operațiunile autorizate')"
-              >Precursorii (substanțe clasificate) și operațiunile autorizate</a
-            >
-          </li>
-          <li id="option4-2022">
-            <a
-              href="/statistic"
-              onclick="saveOption('Proiectele și campaniile naționale de prevenire a consumului de droguri')"
-              >Proiectele și campaniile naționale de prevenire a consumului de
-              droguri</a
             >
           </li>
         </ul>
