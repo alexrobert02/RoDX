@@ -159,7 +159,7 @@ function handleRequest(req, res) {
       });
     return;
 
-  } else if (requestUrl === "/deleteUser") {
+  } else if (requestUrl === "/deleteUser" && req.method === "DELETE" ) {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const email = urlParams.get("email");
   
@@ -171,14 +171,23 @@ function handleRequest(req, res) {
   
     deleteUser(email)
       .then((result) => {
-        res.setHeader("Content-Type", "application/json");
-        res.statusCode = 200;
-        res.end(JSON.stringify(result));
+        if (result.deletedCount === 1) {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ message: 'User deleted successfully' }));
+        } else {
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ error: 'User not found' }));
+        }
       })
       .catch((err) => {
+        console.error('Error deleting user from MongoDB', err);
         res.statusCode = 500;
-        res.end("Error deleting user from MongoDB");
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: 'Error deleting user from MongoDB' }));
       });
+    
     return;
   } else if (path.extname(requestUrl) === ".css") {
     fsPath = path.resolve(appRootPath + "/src" + requestUrl);
@@ -380,18 +389,12 @@ async function deleteUser(email) {
     await client.connect();
     console.log("Connected to MongoDB");
 
-    const database = client.db("RoDX");
+    const database = client.db("User");
     const collection = database.collection("users");
 
     const result = await collection.deleteOne({ email });
 
-    if (result.deletedCount === 1) {
-      res.statusCode = 200;
-      res.end("User deleted successfully");
-    } else {
-      res.statusCode = 404;
-      res.end("User not found");
-    }
+    return result;
     
   } catch (error) {
     console.error("Failed to delete user from MongoDB", error);
