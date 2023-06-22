@@ -53,7 +53,13 @@ function handleRequest(req, res) {
   } else if (requestUrl === "/register") {
     fsPath = path.resolve(appRootPath + "/src/views/register.html");
   } else if (requestUrl === "/admin") {
-    fsPath = path.resolve(appRootPath + "/src/views/admin.html");
+    if (isAdminLoggedIn(req)) {
+      fsPath = path.resolve(appRootPath + "/src/views/admin.html");
+    } else {
+      res.statusCode = 403; // Forbidden
+      res.end("Access denied");
+      return;
+    }
   } else if (requestUrl === "/getData") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
@@ -199,7 +205,10 @@ function handleRequest(req, res) {
   } else if (requestUrl === "/logout") {
     res.setHeader(
       "Set-Cookie",
-      "Logat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+      [
+        "Logat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",
+        "Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+      ]
     );
     res.statusCode = 302;
     res.setHeader("Location", "/login");
@@ -391,3 +400,15 @@ async function deleteUser(email) {
     await client.close();
   }
 }
+
+function isAdminLoggedIn(req) {
+  var cookies = cookie.parse(req.headers.cookie || "");
+  
+  if (cookies.Logat && cookies.Role === "admin") { // Assuming the admin role is stored in the "Role" cookie
+    return true;
+  } else {
+    return false;
+  }
+}
+
+

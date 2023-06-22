@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 var MongoClient = require("mongodb").MongoClient;
 
 const mongoURL = process.env.DB_URL;
-const dbName = "RoDX";
+const dbName = "User";
 
 function handleRegisterRequest(req, res) {
   let body = "";

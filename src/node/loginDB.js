@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const mongoURL = process.env.DB_URL;
-const dbName = "RoDX";
+const dbName = "User";
 
 function generateToken() {
   return uuidv4();
@@ -21,7 +21,23 @@ function handleLoginRequest(req, res) {
     const { email, password } = parseFormData(body);
     const user = await findUser(email);
 
-    if (user && bcrypt.compareSync(password, user.password)) {
+    if (user && bcrypt.compareSync(password, user.password) && user.role === "admin") {
+      const token = generateToken();
+      const cookies = [
+        `Logat=${token}; Path=/;`,
+        `Role=admin; Path=/;`
+      ];
+      res.setHeader("Set-Cookie", cookies);
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/html");
+      res.write(`
+        <script>
+          alert("Te-ai logat cu succes");
+          window.location.href = "/";
+        </script>
+      `);
+      res.end();
+    } else if (user && bcrypt.compareSync(password, user.password) && user.role === "user") {
       const token = generateToken();
       res.setHeader("Set-Cookie", `Logat=${token}; Path=/;`);
       res.statusCode = 200;
@@ -33,7 +49,9 @@ function handleLoginRequest(req, res) {
         </script>
       `);
       res.end();
-    } else {
+
+    }
+    else {
       res.setHeader("Content-Type", "text/html");
       res.write(`
         <script>
