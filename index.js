@@ -50,7 +50,7 @@ async function readExcelFile(filePath) {
         const data = {};
 
         rowData.forEach((value, index) => {
-          const header = headers[index]; // Add 1 to account for excluded first cell
+          const header = headers[index];
           data[header] = value;
         });
 
@@ -86,7 +86,7 @@ async function readExcelFile(filePath) {
 
     console.log("Data read successfully!");
 
-    // Return the collections object
+    // returnam colectia
     //console.log(collections);
     return collections;
   } catch (err) {
@@ -123,7 +123,7 @@ server.listen(PORT, function () {
   console.log("Server listening on: http://localhost:%s", PORT);
 });
 
-// Function to read all files in a directory
+// citim toate fisierele dintr-un director
 function readFilesInDirectory(directoryPath) {
   return new Promise((resolve, reject) => {
     fs.readdir(directoryPath, (err, files) => {
@@ -136,12 +136,12 @@ function readFilesInDirectory(directoryPath) {
   });
 }
 
-// Function to check if a file is an Excel file
+// verificam daca un fisier e excel
 function isExcelFile(filePath) {
   return filePath.toLowerCase().endsWith(".xlsx");
 }
 
-// Function to process all Excel files in a directory
+// procesarea fisierelor excel
 async function processExcelFilesInDirectory(directoryPath) {
   try {
     const files = await readFilesInDirectory(directoryPath);
@@ -153,7 +153,7 @@ async function processExcelFilesInDirectory(directoryPath) {
         try {
           const collections = await readExcelFile(filePath);
           if (collections) {
-            // Insert data into respective collections
+            // inserare date in colectii
             Object.entries(collections).forEach(([collectionName, data]) => {
               insertData(collectionName, data);
             });
@@ -168,6 +168,6 @@ async function processExcelFilesInDirectory(directoryPath) {
   }
 }
 
-const folderPath = "./src/api/xlsx"; // Specify the folder path here
+const folderPath = "./src/api/xlsx"; // folder-path
 
 //processExcelFilesInDirectory(folderPath);
