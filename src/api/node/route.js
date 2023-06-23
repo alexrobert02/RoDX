@@ -466,7 +466,7 @@ async function updateUser(email, userData) {
     const database = client.db("User");
     const collection = database.collection("users");
 
-    // Check if the new password is different from the current one
+    // verificam daca noua parola e diferita de cea curenta
     if (userData.password && userData.password !== "") {
       const user = await collection.findOne({ email });
       if (user && userData.password === user.password) {
