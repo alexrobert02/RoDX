@@ -63,7 +63,7 @@ function handleRequest(req, res) {
     if (isAdminLoggedIn(req)) {
       fsPath = path.resolve(appRootPath + "/src/views/admin.html");
     } else {
-      res.statusCode = 403; // Forbidden
+      res.statusCode = 403; 
       res.end("Access denied");
       return;
     }
@@ -451,7 +451,6 @@ function isAdminLoggedIn(req) {
   var cookies = cookie.parse(req.headers.cookie || "");
 
   if (cookies.Logat && cookies.Role === "admin") {
-    // Assuming the admin role is stored in the "Role" cookie
     return true;
   } else {
     return false;
@@ -471,10 +470,10 @@ async function updateUser(email, userData) {
     if (userData.password && userData.password !== "") {
       const user = await collection.findOne({ email });
       if (user && userData.password === user.password) {
-        // New password is the same as the current one, no need to update
-        delete userData.password; // Remove the password field from the update data
+        // noua parola corespunde cu cea veche
+        delete userData.password; // stergem campul de parola din update data
       } else {
-        // Hash the new password
+        // Hash la noua parola
         const hashedPassword = bcrypt.hashSync(userData.password, 10);
         userData.password = hashedPassword;
       }

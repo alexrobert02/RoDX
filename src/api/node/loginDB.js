@@ -7,12 +7,13 @@ const bcrypt = require("bcrypt");
 const mongoURL = process.env.DB_URL;
 const dbName = "User";
 
+//generam token pentru pastrarea credentialelor 
 function generateToken() {
   return uuidv4();
 }
 
 function handleLoginRequest(req, res) {
-  let body = "";
+  let body = ""; // aici stocam datele primite
   req.on("data", (chunk) => {
     body += chunk.toString();
   });

@@ -1,10 +1,11 @@
+//importuri
 var http = require("http");
 var Routes = require("./src/api/node/route.js");
-var xlsx = require("xlsx"); // Import the xlsx library
+var xlsx = require("xlsx"); 
 const fs = require('fs');
 const path = require('path');
 const ExcelJS = require("exceljs");
-const { MongoClient } = require("mongodb"); // Import the MongoClient
+const { MongoClient } = require("mongodb");
 
 const uri =
   "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
@@ -17,32 +18,33 @@ function isRowEmpty(rowValues) {
 }
 
 async function readExcelFile(filePath) {
-  const documentTitleRegex = /\\([^\\]+)\.xlsx$/; // Regular expression to extract the document title from the filePath
+  const documentTitleRegex = /\\([^\\]+)\.xlsx$/; // regex pentru extragerea titlului documentului
   const documentTitleMatch = filePath.match(documentTitleRegex);
-  const documentTitle = documentTitleMatch ? documentTitleMatch[1] : ""; // Extract the document title from the filePath, or set it to an empty string if not found
+  const documentTitle = documentTitleMatch ? documentTitleMatch[1] : ""; // extragem titlul documentului (sau null daca nu e gasit)
 
   const workbook = new ExcelJS.Workbook();
 
   try {
     await workbook.xlsx.readFile(filePath);
 
-    const collections = {}; // Object to store collections
+    const collections = {}; // stocare collectii
 
-    const worksheet = workbook.worksheets[0]; // Get the first sheet
+    const worksheet = workbook.worksheets[0]; 
 
-    let currentSection = ""; // Track the current section
-    let headers = []; // Array to store column headers
+    let currentSection = ""; 
+    let headers = []; // stocam headerele coloanelor
     let rowbeforeisempty = false;
     let currentrowisempty = true;
     let tabledata = false;
     let tableheader = false;
     worksheet.eachRow({ includeEmpty: true }, (row, rowNumber) => {
       currentrowisempty = isRowEmpty(row.values);
+      // procesarea datelor tabelei
       if (tabledata === true && currentrowisempty === false) {
-        const rowData = row.values.slice(1); // Exclude the first cell
-        const collectionKey = documentTitle + "_" + currentSection; // Concatenate documentTitle with currentSection to form the collection key
+        const rowData = row.values.slice(1); // excludem prima celula
+        const collectionKey = documentTitle + "_" + currentSection; // concatenam titlul documentului cu sectiunea curenta pentru a forma collection key
         if (!collections[collectionKey]) {
-          collections[collectionKey] = []; // Initialize the collection array
+          collections[collectionKey] = []; // initializare
         }
         const collection = collections[collectionKey];
         const data = {};
@@ -60,7 +62,7 @@ async function readExcelFile(filePath) {
         tableheader = false;
       }
       if (tableheader === true) {
-        // First row contains column headers
+        // primul rand contine  headerele
         headers = row.values.slice(1);
         headers[0] = "name";
         tabledata = true;
@@ -68,7 +70,7 @@ async function readExcelFile(filePath) {
       }
 
       if (rowbeforeisempty === true && currentrowisempty === false) {
-        currentSection = row.getCell(1).text; // Set current section
+        currentSection = row.getCell(1).text; // sectiunea curenta
         tableheader = true;
         tabledata = false;
       }
