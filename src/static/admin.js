@@ -127,7 +127,7 @@ function saveUserChanges(
 
     document.body.appendChild(warningPopup);
 
-    fetch(`http://localhost:3000/updateUser?email=${user.email}`, {
+    fetch(`https://rodx.onrender.com/updateUser?email=${user.email}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

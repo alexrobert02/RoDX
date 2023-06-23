@@ -16,7 +16,7 @@ deleteButton.addEventListener("click", deleteUser);
 const email = localStorage.getItem("email");
 
 function fetchUser() {
-  fetch(`http://localhost:3000/getUser?email=${email}`, {
+  fetch(`https://rodx.onrender.com/getUser?email=${email}`, {
     method: "GET",
   })
     .then((response) => response.json())
@@ -43,7 +43,7 @@ function deleteUser() {
 
     document.body.appendChild(warningPopup);
 
-    fetch(`http://localhost:3000/deleteUser?email=${email}`, {
+    fetch(`https://rodx.onrender.com/deleteUser?email=${email}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
@@ -86,7 +86,7 @@ function saveUserChanges() {
 
     document.body.appendChild(warningPopup);
 
-    fetch(`http://localhost:3000/updateUser?email=${email}`, {
+    fetch(`https://rodx.onrender.com/updateUser?email=${email}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
