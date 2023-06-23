@@ -191,8 +191,6 @@ function handleRequest(req, res) {
     req.on("end", () => {
       try {
         const userData = JSON.parse(body);
-
-        // Update the user data in the database (assuming you have a function called `updateUser`)
         updateUser(email, userData)
           .then((result) => {
             res.setHeader("Content-Type", "application/json");
