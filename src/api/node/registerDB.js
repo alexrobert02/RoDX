@@ -14,8 +14,7 @@ function handleRegisterRequest(req, res) {
   });
 
   req.on("end", async () => {
-    const {email, password } =
-      parseFormData(body);
+    const { email, password } = parseFormData(body);
     const userByEmail = await findUserByEmail(email);
 
     if (userByEmail) {
@@ -57,7 +56,6 @@ async function findUserByEmail(email) {
   return user;
 }
 
-
 async function insertUser(email, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const client = new MongoClient(mongoURL);
@@ -69,7 +67,7 @@ async function insertUser(email, password) {
   await collection.insertOne({
     email,
     password: hashedPassword,
-    role: "user"
+    role: "user",
   });
 
   client.close();

@@ -1,0 +1,121 @@
+:root {
+  --background-signup: #f5f5f5;
+  --background-form-signup: #e9f3f1;
+  --button-color-signup: #1f8a70;
+  --button-hover-signup: #196e5a;
+  --text-color-signup: #555;
+  --field-background-signup: #fff;
+  --title-signup: #242424;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-color-signup);
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #242424;
+  margin-bottom: 4.8rem;
+}
+
+h2 {
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  border-left: 3px solid #1f8a70;
+  border-bottom: 3px solid #1f8a70;
+  padding: 0 0 0.8rem 1.6rem;
+}
+
+.title {
+  margin-bottom: 1.6rem;
+  font-size: 3.2rem;
+  font-weight: 600;
+  color: var(--title-signup);
+}
+
+article {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  font-zize: 12px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+
+  margin-left: 20px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+figure {
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+ol {
+  font-size: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+ol li {
+  margin-bottom: 5px;
+}

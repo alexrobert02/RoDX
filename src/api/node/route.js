@@ -55,6 +55,8 @@ function handleRequest(req, res) {
     fsPath = path.resolve(appRootPath + "/src/views/login.html");
   } else if (requestUrl === "/register") {
     fsPath = path.resolve(appRootPath + "/src/views/register.html");
+  } else if (requestUrl === "/documentation") {
+    fsPath = path.resolve(appRootPath + "/docs/documentation.html");
   } else if (requestUrl === "/myaccount") {
     fsPath = path.resolve(appRootPath + "/src/views/myaccount.html");
   } else if (requestUrl === "/admin") {
@@ -107,7 +109,6 @@ function handleRequest(req, res) {
         res.end("Error retrieving data from MongoDB");
       });
     return;
-
   } else if (requestUrl === "/getOptions" && req.method === "GET") {
     const urlParams = new URLSearchParams(url.parse(req.url).query);
     const collectionName = urlParams.get("collectionName");
@@ -514,4 +515,3 @@ async function getUser(email) {
     await client.close();
   }
 }
-

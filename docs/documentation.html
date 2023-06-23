@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+   <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+  <link rel="stylesheet" href="./documentation.css">
+</head>
+
+
+<body>
+<article>
+  <header>
+    <h1>Romanian Drug Explorer</h1>
+    <h2>Content</h2>
+    </section>
+    <ol role="directory">
+      <li><a href="#introduction">Introducere</a>
+        <ol role="introduction-directory">
+          <li><a href="#introduction__purpose">Scopul documentului</a></li>
+          <li><a href="#introduction__audience">Publicul tinta și sugestii</a></li>
+          <li><a href="#introduction__product-scope">Scopul aplicatiei</a></li>
+        </ol>
+      </li>
+      <li><a href="#overall-description">Descriere</a>
+        <ol role="#description-directory">
+          <li><a href="#overall-description__product-perspective">Perspectiva produsului</a></li>
+          <li><a href="#overall-description__product-functions">Functionalitatile produsului</a></li>
+          <li><a href="#overall-description__design-constraints">Constrângeri de proiectare și implementare</a></li>
+          <li><a href="#overall-description__user-documentation">Documentatia utilizatorul</a></li>
+        </ol>
+      </li>
+      <li><a href="#interfacereq">Cerințe pentru interfața externă</a>
+        <ol role="#interfacereq-directory">
+          <li><a href="#interfacereq__user-interfaces">Interfata User</a></li>
+        </ol>
+      </li>
+      </li>
+      <li><a href="#systemfeatures">Caracteristici ale sistemului</a>
+        <ol role="#systemfeatures-directory">
+          <li><a href="#systemfeatures__login">Conectare</a></li>
+          <li><a href="#systemfeatures__register">Creare cont</a></li>
+          <li><a href="#systemfeatures__home">Acasa</a></li>
+          <li><a href="#systemfeatures__children">Statistici</a></li>
+          <li><a href="#systemfeatures__children">Vizualizare statistici</a></li>
+          <li><a href="#systemfeatures__notifications-center">Droguri</a></li>
+          <li><a href="#systemfeatures__friends-family">Profilul meu</a></li>
+          <li><a href="#systemfeatures__friends-family">Ajutor</a></li>
+
+        </ol>
+      </li>
+      </li>
+      <li><a href="#nonfunctionalreq">Other Nonfunctional Requirements</a>
+        <ol role="#nonfunctionalreq-directory">
+          <li><a href="#nonfunctionalreq__security-requirements">Security requirements</a></li>
+        </ol>
+      </li>
+      </li>
+    </ol>
+    </div>
+  </header>
+  <section id="introduction" role="doc-introduction">
+    <h2>1. Introducere</h2>
+    <section id="introduction__purpose" role="doc-introduction">
+      <h3>1.1 Scopul documentului</h3>
+      <p>
+        Scopul acestui document este sa prezinte detaliile aplicatiei Romanian Drug Explorer(RoDX). Acesta va cuprinde toate
+        amanuntele legate de caracteristicile aplicației, interfața și modul în care trebuie să functioneze. Acest
+        document va fi utilizat pentru a intelege modul de utilizare a aplicatiei de persoanele care folosesc site-ul
+        pentru prima data.
+      </p>
+    </section>
+    <section id="introduction__audience" role="doc-introduction">
+      <h3>1.2 Publicul tinta și sugestii</h3>
+      <p>
+        Acest document este redactat atat pentru web developers cat si pentru utilizatorii aplicatiei. Programatorii vor
+        putea intelege cum a fost aplicatia conceputa.Publicul tinta pentru o astfel de aplicatie ar putea include cercetatori
+         si analisti din domeniul sanatatii si al combaterii drogurilor, agentii de aplicare a legii, profesionisti din domeniul medical, 
+         organizatii si institutii guvernamentale responsabile de politicile privind drogurile, precum si persoane interesate in 
+         intelegerea consumului de droguri si impactul acestuia asupra infractiunii si sanatatii publice din Romania.
+      </p>
+    </section>
+    <section id="introduction__product-scope" role="doc-introduction">
+      <h3>1.3 Scopul aplicatiei</h3>
+
+      <p>
+       Romanian Drug Explorer a fost creat cu scopul de a oferi o platforma utila pentru analiza si intelegerea tendintelor 
+       privind consumul de droguri in Romania si pentru a ajuta la dezvoltarea de politici si programe de prevenire a consumului 
+       de droguri. Utilizatorii vor avea acces la o varietate de cautari si filtre pentru a explora datele in modul cel mai 
+       relevant pentru nevoile lor. Rezultatele cautarilor si rapoartele asociate vor fi disponibile ca documente HTML si in 
+       format CSV. De asemenea, aplicatia va oferi un API REST/GraphQL propriu pentru a permite accesul la date si 
+       functionalitati. In plus, aplicatia RoDX va permite utilizatorilor sa exporte vizualizarile generate in doua 
+       moduri diferite (PNG si SVG).
+      </p>
+    </section>
+  </section>
+  <section id="overall-description" role="doc-overall-description">
+    <h2>2. Descriere</h2>
+    <section id="overall-description__product-perspective" role="doc-overall-description">
+      <h3>2.1 Perspectiva produsului</h3>
+      <p>
+       Proiectul consta in realizarea unui instrument web de analiza si vizualizare a situatiei consumului de droguri in 
+       Romania, in ultimii 6 ani. Utilizand datele statistice privind infractiunile si confiscarile efectuate, urgentele 
+       medicale si campaniile de prevenire a consumului de stupefiante, acest instrument va ajuta la intelegerea si evaluarea 
+       situatiei din perspectiva utilizatorilor finali. Prin intermediul sau, utilizatorii pot cauta si filtra datele in functie 
+       de diverse criterii, precum regiunea, tipul drogului, anul si altele.
+      </p>
+    </section>
+    <section id="overall-description__product-functions" role="doc-overall-description">
+      <h3>2.2 Functionalitatile produsului</h3>
+      <p>Utilizatorii:</p>
+      <ul>
+        <li>Autentificare:</li>
+        <ul>
+          <li>Creare cont(Signup)</li>
+          <li>Conectare(Login)</li>
+        </ul>
+      </ul>
+      <ul>
+        <li>Selectarea anului pentru vizualizarea statisticilor.</li>
+      </ul>
+      <ul>
+        <li>Selectarea documentului in functie de informatiile dorite.</li>
+      </ul>
+      <ul>
+        <li>Vizualizarea informatiilor sub 4 forme diferite (Pie Chart, Bubble Chart, Bar Chart si CSV Table)</li>
+      </ul>
+      <ul>
+        <li>Posibilitatea de exportare a informatiilor in doua fromate diferite (SVG si PNG)</li>
+      </ul>
+      <ul>
+        <li>Vizualizarea si editarea datelor personale</li>
+      </ul>
+      <p>Administratorul:</p>
+      <ul>
+        <li>Autentificare:</li>
+        <ul>
+          <li>Conectare(Login)</li>
+        </ul>
+      </ul>
+      <ul>
+        <li>Selectarea anului pentru vizualizarea statisticilor.</li>
+      </ul>
+      <ul>
+        <li>Selectarea documentului in functie de informatiile dorite.</li>
+      </ul>
+      <ul>
+        <li>Vizualizarea informatiilor sub 4 forme diferite (Pie Chart, Bubble Chart, Bar Chart si CSV Table)</li>
+      </ul>
+      <ul>
+        <li>Posibilitatea de exportare a informatiilor in doua fromate diferite (SVG si PNG)</li>
+      </ul>
+      <ul>
+        <li>Vizualizarea si editarea datelor personale</li>
+      </ul>
+      <ul>
+        <li>Edit/Delete pentru orice user  </li>
+      </ul>
+
+
+      <section id="overall-description__design-constraints" role="doc-overall-description">
+        <h3>2.3 Constrângeri de proiectare și implementare</h3>
+        <p>
+        <ul>
+          <li>Front-End:</li>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </ul>
+        <ul>
+          <li>Back-End:</li>
+          <ul>
+            <li>Node.js</li>
+            <li>JSON</li>
+            <li>MongoDB</li>
+          </ul>
+        </ul>
+        </p>
+      </section>
+      <section id="overall-description__user-documentation" role="doc-overall-description">
+        <h3>2.4 Documentatia utilizatorul</h3>
+        <p>
+          Aplicatia a fost gandita astfel incat orice utilizator nou va putea naviga usor, fiind conceputa intr-un mod
+          intuitiv, ce nu necesita cunostinte tehnice. Daca exista totusi neclaritati in ceea ce priveste utilizarea aplicatiei,
+          acest document va va raspunde la toate intrebarile.
+        </p>
+      </section>
+    </section>
+    <section id="interfacereq" role="interfacereq-description">
+      <h2>3. Cerințe pentru interfața externă</h2>
+      <section id="interfacereq__user-interfaces" role="interfacereq-description">
+        <h3>3.1 Interfata User</h3>
+        <figure>
+          <p>Conectare</p>
+          <img src="../src/static/images/login.png" alt="Connect" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Creare cont </p>
+          <img src="../src/static/images/newaccount.png" alt="New Account" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Acasa</p>
+          <img src="../src/static/images/mainpage.png" alt="Home" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Documentele disponibile in functie de anul selectat </p>
+          <img src="../src/static/images/docsavailable.png" alt="Documents" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Statisticile in functie de criteriile de cautare (an, document, informatii) </p>
+          <img src="../src/static/images/statistics.png" alt="Statistics" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Profilul meu</p>
+          <img src="../src/static/images/myaccount.png" alt="My Account" style="width: 500px; height: auto" />
+        </figure>
+        <figure>
+          <p>Droguri populare</p>
+          <img src="../src/static/images/drugs.png" alt="Drugs" style="width: 500px; height: auto" />
+        </figure>
+    </section>
+    <section id="systemfeatures" role="systemfeatures-description">
+      <h2>4. Caracteristici ale sistemului</h2>
+      <section id="systemfeatures__login" role="systemfeatures-description">
+        <h3>4.1 Conectare</h3>
+        <ul>
+          <li>4.1.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Acesta este o caracteristica prioritara in aplicatia noastra. Utilizatorul trebuie sa introduca
+              email-ul si parola contului sau. Se verifica exista acelui cont in baza noastra de date, ulterior
+              oferindu-se accesul catre alte avantaje.
+            </li>
+          </ul>
+          <li>4.1.2 Lista de pasi </li>
+          <ul>
+            <li>
+              Utilizator trebuie sa introduca credentialele alese la crearea contului.
+            </li>
+            <li>
+              Daca adressa de email sau parola nu exista in baza de date, o eroare va fi afisata pe ecran.
+              Eroarea il va avertiza pe utilizator ca datele introduse nu sunt corecte.
+            </li>
+            <li>
+              Daca utilizatorul introduce corect datele acesta va avea acces la toate functionalitatile aplicatiei.
+            </li>
+          </ul>
+          <li>4.1.3 Cerinte </li>
+          <ul>
+            <li>
+              Utilizatorul trebuie sa introduce datele valide.
+
+            </li>
+          </ul>
+        </ul>
+      </section>
+      <section id="systemfeatures__register" role="systemfeatures-description">
+        <h3>4.2 Creare cont </h3>
+        <ul>
+          <li>4.2.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Aceasta este o caracterista necesare pentru aplicatie. O persoana ce utilizeaza aplicatia
+              pentru prima data isi va introducere datele cerute.(email si parola).
+              Dupa ce a fost apasat butonul de inregistrare aceastea vor fi introduse in baza de date.
+
+            </li>
+          </ul>
+          <li>4.2.2 Lista de pasi</li>
+          <ul>
+            <li>
+              Utilizator va oferi datele lui personale.
+
+            </li>
+            <li>
+              Daca datele oferite de el se regasesc deja in baza de date, o eroare va fi afisata pe ecran,
+              in caz contrar datele vor fi introduse in baza de date.
+            </li>
+          </ul>
+          <li>4.2.3 Cerinte</li>
+          <ul>
+            <li>
+              Utilizatorul creat trebuie sa nu fie deja intregistrat in baza de date(email unic)
+            </li>
+          </ul>
+        </ul>
+      </section>
+      <section id="systemfeatures__home" role="systemfeatures-description">
+        <h3>4.3 Acasa</h3>
+        <ul>
+          <li>4.3.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Aceasta pagina este una ce te ajuta la navigarea prin aplicatie, avand acces la caracteristicile principale.
+            </li>
+          </ul>
+        </ul>
+      </section>
+      <section id="systemfeatures__children" role="systemfeatures-description">
+        <h3>4.4 Statisticile pe ultimii 6 ani</h3>
+        <ul>
+          <li>4.4.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Aceasta pagina contine toti anii pentru care utilizatorii pot vizualiza statisticile (2017-2022).
+            </li>
+          </ul>
+          <li>4.4.2 Lista de pasi</li>
+          <ul>
+            <li>
+              Utilizatorul va vizualiza lista completa a anilor. Acesta poate selecta anul pentru care doreste sa vada statisticile
+              in functie de documentele accesibile.  
+            </li>
+            <li>
+              Utilizatorul poate accesa restul paginilor prin meniul dispus in partea de sus a paginii.
+            </li>
+
+          </ul>
+      </section>
+      <section id="systemfeatures__notifications-center" role="systemfeatures-description">
+        <h3>4.5 Statisticile in functie de filtrele selectate</h3>
+        <ul>
+          <li>4.5.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Aceasta pagina este foarte importanta pentru ca detine informatia pe care un utilizator o cauta in functie de 
+              urmatoarele criterii: an, document, informatii specifice.
+            </li>
+            <li>4.5.2  Lista de pasi</li>
+            <ul>
+              <li>
+                Utilizatorul poate selecta capul de tabel ce contine informatiile dorite si datele pentru care se va face afisarea
+                diagramelor.
+              </li>
+              <li>
+               Utilizatorul poate selecta modul de afisare al datelor (Pie Chart, Bubble Chart, Bar Chart sau CSV Table).
+              </li>
+              <li>
+                Utilizatorul poate exporta reprezentarea informatiilor in formatul dorit(PNG sau SVG).
+              </li>
+            </ul>
+            <li>4.5.3 Cerinte</li>
+            <ul>
+              <li>
+                Utilizatorul trebuie sa fie conectat pentru a putea beneficia de toate functionalitatile descrise mai sus.
+              </li>
+            </ul>
+          </ul>
+      </section>
+      <section id="systemfeatures__friends-family" role="systemfeatures-description">
+        <h3>4.6 Profilul meu</h3>
+        <ul>
+          <li>4.6.1 Descriere și prioritati</li>
+          <ul>
+            <li>
+              Aceasta este o pagina importanta pentru utilizatorul care este conectat, deoarece aici se gasesc toate
+              caracteristicile specifice contului.
+              Utilizatorul poate sa isi editeze datele personale(emailul sau parola).
+              Utilizatorul are posibilitate de a se deconecta sau de a-si sterge contul.
+            </li>
+          </ul>
+          <li>4.6.2 Lista de pasi</li>
+          <ul>
+            <li>
+              Utilizatorul trebuie sa fie conectat.
+            </li>
+             <li>
+              Utilizatorul trebuie sa acceseze iconita de edit din dreapta jos a profilului pentru editarea datelor.
+            </li>
+            <li>
+              Utilizatorul trebuie sa acceseze butonul de delete pentru stergerea contului si cel de logout pentru deconectarea
+              din cadrul paginii.
+            </li>
+          </ul>
+          <li>4.6.3 Cerinte</li>
+          <ul>
+            <li>
+              Utilizatorul trebuie sa fie conectat pentru a avea acces la acesta pagina
+            </li>
+          </ul>
+        </ul>
+      </section>
+    </section>
+    <section id="nonfunctionalreq" role="nonfunctionalreq-description">
+      <h2>5. Alte cerinte nonfunctionale</h2>
+      <section id="nonfunctionalreq__security-requirements" role="nonfunctionalreq-description">
+        <h3>5.1 Elemente de securitate</h3>
+        <p>
+          Aplicatia foloseste criptare pentru securizarea parolelor.
+        </p>
+      </section>
+    </section>
+</article>
+
+<section typeof="sa:AuthorsList" class="authors-section">
+  <h2>Autori</h2>
+  <ul>
+    <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person">
+              <meta property="schema:givenName" content="Ana">
+              <meta property="schema:additionalName" content="Maria">
+              <meta property="schema:familyName" content="Constantin">
+              <span property="schema:name"> Ana-Maria Constantin </span>
+            </span>
+      <ul>
+        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+          <a href="mailto:ana.constantin@info.uaic.ro"
+             property="schema:email">ana.constantin@info.uaic.ro</a>
+        </li>
+      </ul>
+    </li>
+    <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person">
+              <meta property="schema:givenName" content="Ana">
+              <meta property="schema:additionalName" content="Delia">
+              <meta property="schema:familyName" content="Manoliu">
+              <span property="schema:name"> Ana-Delia Manoliu</span>
+            </span>
+      <ul>
+        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+          <a href="mailto:ana.manoliu@info.uaic.ro"
+             property="schema:email">ana.manoliu@info.uaic.ro</a>
+        </li>
+      </ul>
+    </li>
+    <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person">
+              <meta property="schema:givenName" content="Alexandru">
+              <meta property="schema:additionalName" content="Robert">
+              <meta property="schema:familyName" content="Zaharia">
+              <span property="schema:name"> Alexandru-Robert Zaharia</span>
+            </span>
+      <ul>
+        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+          <a href="mailto:robert.zaharia@info.uaic.ro"
+             property="schema:email">robert.zaharia@info.uaic.ro</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+</body>
+</html>
