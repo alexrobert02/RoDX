@@ -18,7 +18,7 @@ body {
 
 @media screen and (min-width: 768px) {
   body {
-    background-image: url("../static/images/mirror-bg.png");
+    background-image: url("../images/mirror-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -109,13 +109,13 @@ input {
 }
 
 #email {
-  background-image: url("../static/images/mail_icon.png");
+  background-image: url("../images/mail_icon.png");
   background-repeat: no-repeat;
   background-position: center right 34px;
 }
 
 #password {
-  background-image: url("../static/images/password_icon.png");
+  background-image: url("../images/password_icon.png");
   background-repeat: no-repeat;
   background-position: center right 34px;
 }
@@ -185,7 +185,6 @@ div > p {
 @media screen and (min-width: 768px) {
   .info-side {
     display: block;
-    background-image: url("../images/Mockup.svg");
     background-repeat: no-repeat;
     background-position: center right -570px;
     background-size: 820px;

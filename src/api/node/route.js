@@ -8,6 +8,8 @@ var LoginRoute = require("./loginDB.js");
 var cookie = require("cookie");
 const bcrypt = require("bcrypt");
 
+const mongoURL = process.env.DB_URL;
+
 function handleRequest(req, res) {
   var requestUrl = url.parse(req.url).pathname;
   var fsPath;
@@ -295,9 +297,7 @@ function handleRequest(req, res) {
 }
 
 async function getCollections(documentName) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   const decodedDocumentName = decodeURIComponent(documentName);
   try {
     await client.connect();
@@ -321,9 +321,7 @@ async function getCollections(documentName) {
 }
 
 async function getOptions(collectionName) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   const decodedCollectionName = decodeURIComponent(collectionName);
   try {
     await client.connect();
@@ -344,9 +342,7 @@ async function getOptions(collectionName) {
 }
 
 async function getData(collectionName, itemName) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   const decodedCollectionName = decodeURIComponent(collectionName);
   const decodedItemName = decodeURIComponent(itemName);
   try {
@@ -377,9 +373,7 @@ async function getData(collectionName, itemName) {
 }
 
 async function getCollection(collectionName) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   const decodedCollectionName = decodeURIComponent(collectionName);
   try {
     await client.connect();
@@ -412,9 +406,7 @@ function isLoggedIn(req) {
 module.exports = handleRequest;
 
 async function getUsers() {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
@@ -437,9 +429,7 @@ async function getUsers() {
 }
 
 async function deleteUser(email) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
@@ -470,9 +460,7 @@ function isAdminLoggedIn(req) {
 }
 
 async function updateUser(email, userData) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
@@ -505,9 +493,7 @@ async function updateUser(email, userData) {
 }
 
 async function getUser(email) {
-  const uri =
-    "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
