@@ -19,7 +19,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../static/images/image1.png");
+  background-image: url("../images/image1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
