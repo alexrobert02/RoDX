@@ -349,8 +349,6 @@ async function getData(collectionName, itemName) {
   const client = new MongoClient(uri);
   const decodedCollectionName = decodeURIComponent(collectionName);
   const decodedItemName = decodeURIComponent(itemName);
-  console.log(decodedItemName);
-  console.log(decodedCollectionName);
   try {
     await client.connect();
     console.log("Connected to MongoDB");
