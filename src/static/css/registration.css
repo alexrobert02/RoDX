@@ -106,6 +106,7 @@ label {
 
 input {
   box-sizing: border-box;
+  margin-left: 5px;
 }
 
 #email {
@@ -115,12 +116,19 @@ input {
 }
 
 #password {
-  background-image: url("../images/password_icon.png");
+  /* background-image: url("../images/password_icon.png"); */
   background-repeat: no-repeat;
   background-position: center right 34px;
+  width: 100%;
 }
-#email::placeholder,
-#password::placeholder {
+
+.password-field img {
+  width: 20px;
+    float: right;
+    transform: translate(-180%, -170%);
+}
+
+#email, #password {
   padding-left: 20px;
 }
 
@@ -176,7 +184,7 @@ div > p {
 
 /************ INFO-SIDE ************/
 
-.info-side {
+/* .info-side {
   display: none;
   width: 50%;
   height: 100%;
@@ -196,4 +204,4 @@ div > p {
     background-size: cover;
     background-position: center right -500px;
   }
-}
+} */

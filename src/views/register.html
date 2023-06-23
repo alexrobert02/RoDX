@@ -37,13 +37,11 @@
 
             <div class="field">
               <label for="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-              >
+              <div class="password-field">
+                <input id="password" type="password" name="password"
+                  placeholder="Enter your password" required />
+                <img id="password-icon" onclick="displayPassword()" src="../static/images/hidden-pass.png" alt="">
+              </div>
             </div>
             <input type="submit" value="Sign Up" >
 
@@ -61,5 +59,6 @@
       </div>
     </div>
     <script src="../static/js/index-script.js"></script>
+    <script src="../static/js/show-password.js"></script>
   </body>
 </html>
