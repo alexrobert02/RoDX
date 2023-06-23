@@ -58,7 +58,7 @@ function fetchTableOptions() {
   const year = localStorage.getItem("textvalue");
   const documentNameWithYear = `${documentName}-${year}`;
   fetch(
-    `http://localhost:3000/getCollections?documentName=${documentNameWithYear}`,
+    `https://rodx.onrender.com/getCollections?documentName=${documentNameWithYear}`,
     {
       method: "GET",
     }
@@ -91,7 +91,7 @@ function fetchDrugOptions() {
   const encodedCollectionName = encodeURIComponent(collectionNameWithYear);
 
   fetch(
-    `http://localhost:3000/getOptions?collectionName=${encodedCollectionName}`,
+    `https://rodx.onrender.com/getOptions?collectionName=${encodedCollectionName}`,
     {
       method: "GET",
     }
@@ -131,7 +131,7 @@ function displayImage() {
 
   if (selectedOption === "Bar Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      `https://rodx.onrender.com/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
       {
         method: "GET",
       }
@@ -157,7 +157,7 @@ function displayImage() {
       });
   } else if (selectedOption === "Bubble Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      `https://rodx.onrender.com/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
       {
         method: "GET",
       }
@@ -184,7 +184,7 @@ function displayImage() {
       });
   } else if (selectedOption === "Pie Chart") {
     fetch(
-      `http://localhost:3000/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
+      `https://rodx.onrender.com/getData?collectionName=${encodedCollectionName}&&itemName=${encodedSelectedDrug}`,
       {
         method: "GET",
       }
@@ -210,7 +210,7 @@ function displayImage() {
       });
   } else if (selectedOption === "CSV Table") {
     fetch(
-      `http://localhost:3000/getCollection?collectionName=${encodedCollectionName}`,
+      `https://rodx.onrender.com/getCollection?collectionName=${encodedCollectionName}`,
       {
         method: "GET",
       }

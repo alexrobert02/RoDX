@@ -1,5 +1,5 @@
 function fetchUsers() {
-  fetch(`http://localhost:3000/getAllUsers`, {
+  fetch(`https://rodx.onrender.com/getAllUsers`, {
     method: "GET",
   })
     .then((response) => response.json())
@@ -64,7 +64,7 @@ function deleteUser(email) {
 
     document.body.appendChild(warningPopup);
 
-    fetch(`http://localhost:3000/deleteUser?email=${email}`, {
+    fetch(`https://rodx.onrender.com/deleteUser?email=${email}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
