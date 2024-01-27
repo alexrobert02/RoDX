@@ -1,29 +1,16 @@
-Nume echipa: Powerpuff dealers
+# Romanian Drug Explorer
 
-Componenta echipa:
+## Componenta echipa
 
-- Constantin Ana-Maria
-- Manoliu Ana-Delia
-- Zaharia Robert Alexandru
+* Constantin Ana-Maria
+* Manoliu Ana-Delia
+* Zaharia Robert-Alexandru
 
----
-
----
-
-******\*\*******PREZENTARE VIDEO******\*\*\*\*******
-
----
-
+## Prezentare Video
 https://youtu.be/Q4afix9HTHs
 
----
-
----
-
-******\*\*\*\*******DOCUMENTATIE********\*\*********
-
----
-
+## Documentatie
 https://rodx.onrender.com/documentation
 
----
+## ENV file
+* DB_URL (connection string)

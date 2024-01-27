@@ -6,10 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const ExcelJS = require("exceljs");
 const { MongoClient } = require("mongodb");
-
-const uri =
-  "mongodb+srv://securitate:securitate1@rodx.sprj1gy.mongodb.net/?retryWrites=true&w=majority";
-
+const mongoURL = process.env.DB_URL;
 const dbName = "RoDX";
 
 // verificam daca este delimitator de tabele
@@ -98,7 +95,7 @@ async function readExcelFile(filePath) {
 
 
 async function insertData(collectionName, data) {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(mongoURL);
 
   try {
     await client.connect();
